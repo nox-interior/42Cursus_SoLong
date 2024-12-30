@@ -6,7 +6,7 @@
 #    By: amarroyo <amarroyo@student.42madrid.com    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/06/30 08:41:33 by amarroyo          #+#    #+#              #
-#    Updated: 2024/12/30 12:14:10 by amarroyo         ###   ########.fr        #
+#    Updated: 2024/12/30 12:28:59 by amarroyo         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -15,7 +15,7 @@ NAME			= so_long
 
 # Directories
 LIBFT			= libft/libft.a
-MLX				= mlx/mlx/libmlx42.a
+MLX				= mlx/mlxbuild/libmlx42.a
 MLX_DIR			= mlx
 INC_DIR         = inc/
 SRC_DIR         = src/
@@ -26,6 +26,10 @@ CC				= gcc
 CFLAGS			= -Wall -Werror -Wextra -I$(INC_DIR) -I$(MLX)
 MLX_FLAGS		= -L$(MLX_DIR) -lmlx -L/usr/lib -lXext -lX11 -lm -lz
 rm				= rm -f
+# instrucciones para compilar la lib de CODAM, por el momento no sé si 
+# es necesario modificar esto.
+# gcc main.c ... libmlx42.a -Iinclude -ldl -lglfw -pthread -lm
+
 
 # Source Files
 SRC				= $(wildcard $(SRC_DIR)*.c) # Temporary placeholder

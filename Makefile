@@ -6,7 +6,7 @@
 #    By: amarroyo <amarroyo@student.42madrid.com    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/06/30 08:41:33 by amarroyo          #+#    #+#              #
-#    Updated: 2024/09/09 12:23:29 by amarroyo         ###   ########.fr        #
+#    Updated: 2024/12/30 12:14:10 by amarroyo         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -15,7 +15,7 @@ NAME			= so_long
 
 # Directories
 LIBFT			= libft/libft.a
-MLX				= mlx/libmlx.a
+MLX				= mlx/mlx/libmlx42.a
 MLX_DIR			= mlx
 INC_DIR         = inc/
 SRC_DIR         = src/

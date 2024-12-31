@@ -3,4 +3,4 @@
 
 MLX42 obtained from https://github.com/42-Fundacion-Telefonica/MLX42
 
-42CODAM library
+42CODAM original library https://github.com/codam-coding-college/MLX42

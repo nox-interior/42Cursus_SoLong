@@ -6,7 +6,7 @@
 /*   By: amarroyo <amarroyo@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/13 13:58:08 by amarroyo          #+#    #+#             */
-/*   Updated: 2024/05/08 13:45:59 by amarroyo         ###   ########.fr       */
+/*   Updated: 2024/12/31 12:02:23 by amarroyo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,10 @@
 # ifndef BUFFER_SIZE
 #  define BUFFER_SIZE 5
 # endif
+
+#ifndef OPEN_MAX
+#define OPEN_MAX 1024
+#endif
 
 # include <stdlib.h>
 # include <unistd.h>

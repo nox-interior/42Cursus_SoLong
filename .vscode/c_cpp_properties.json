@@ -4,7 +4,7 @@
             "name": "Linux",
             "includePath": [
                 "${workspaceFolder}/**",
-                "${workspaceFolder}/mlx/include",
+                "${workspaceFolder}/mlx/include/MLX42",
                 "/usr/lib/gcc/aarch64-linux-gnu/11/include",
                 "/usr/include/aarch64-linux-gnu",
                 "/usr/include"

@@ -31,6 +31,8 @@ static void ft_error(void)
 }
 
 // Print the window width and height.
+// To access the members of the structure, you must cast the void* pointer 
+// to the appropriate type (const mlx_t* in this case)
 static void ft_hook(void* param)
 {
 	const mlx_t* mlx = param;

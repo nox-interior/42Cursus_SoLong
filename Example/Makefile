@@ -3,9 +3,9 @@ CC = gcc
 CFLAGS = -Wall -Wextra -Werror -I ../mlx/include
 
 # Source files and output
-SRC = Main.c
+SRC = colours_example_02.c
 OBJ = $(SRC:.c=.o)
-NAME = example_program
+NAME = colours_example_program_02
 
 # MLX42 library paths
 LIB_MLX = ../mlx
@@ -34,4 +34,4 @@ re: fclean all
 
 # Build the MLX42 library if it doesn't exist
 $(MLX_LIB):
-	cd $(LIB_MLX) && cmake -B mlxbuild && cmake --build mlxbuild
+	cd $(LIB_MLX) && cmake -B mlxbuild && cmake --build mlxbuild -j4

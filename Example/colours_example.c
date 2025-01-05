@@ -2,6 +2,7 @@
 #include <stdlib.h>
 #include <string.h>
 
+// Creating a white image
 // Bytes Per Pixel. Since each pixel is represented as an integer, it will be four bytes for four channels.
 #define BPP sizeof(int32_t)
 

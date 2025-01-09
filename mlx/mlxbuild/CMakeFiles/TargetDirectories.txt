@@ -1,7 +1,0 @@
-/home/nox/42_CommonCore/02_Milestone/So_Long/42Cursus_SoLong/mlx/mlxbuild/CMakeFiles/mlx42.dir
-/home/nox/42_CommonCore/02_Milestone/So_Long/42Cursus_SoLong/mlx/mlxbuild/CMakeFiles/edit_cache.dir
-/home/nox/42_CommonCore/02_Milestone/So_Long/42Cursus_SoLong/mlx/mlxbuild/CMakeFiles/rebuild_cache.dir
-/home/nox/42_CommonCore/02_Milestone/So_Long/42Cursus_SoLong/mlx/mlxbuild/CMakeFiles/list_install_components.dir
-/home/nox/42_CommonCore/02_Milestone/So_Long/42Cursus_SoLong/mlx/mlxbuild/CMakeFiles/install.dir
-/home/nox/42_CommonCore/02_Milestone/So_Long/42Cursus_SoLong/mlx/mlxbuild/CMakeFiles/install/local.dir
-/home/nox/42_CommonCore/02_Milestone/So_Long/42Cursus_SoLong/mlx/mlxbuild/CMakeFiles/install/strip.dir

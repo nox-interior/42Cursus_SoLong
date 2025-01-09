@@ -6,7 +6,7 @@
 /*   By: amarroyo <amarroyo@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/09 08:51:40 by amarroyo          #+#    #+#             */
-/*   Updated: 2025/01/09 15:59:38 by amarroyo         ###   ########.fr       */
+/*   Updated: 2025/01/09 16:11:41 by amarroyo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,8 +62,18 @@ typedef struct s_game
 	uint32_t	moves;			// Number of moves made by the player
 }				t_game;
 
+// Error codes
+typedef enum e_error
+{
+	ERR_NONE,				// No error
+	ERR_INVALID_EXTENSION,	// Invalid file extension
+	ERR_FILE_NOT_FOUND,		// File could not be opened
+	ERR_NO_VALID_MAP,		// Map format issues
+	// Add more error types here as needed
+}			t_error;
+
 // Functions
 int	ft_check_extension(const char *str);
-int main(int argc, char **argv);
+int	main(int argc, char **argv);
 
 #endif

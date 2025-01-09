@@ -6,7 +6,7 @@
 /*   By: amarroyo <amarroyo@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/09 08:51:40 by amarroyo          #+#    #+#             */
-/*   Updated: 2025/01/09 16:11:41 by amarroyo         ###   ########.fr       */
+/*   Updated: 2025/01/09 16:19:14 by amarroyo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,6 +74,7 @@ typedef enum e_error
 
 // Functions
 int	ft_check_extension(const char *str);
+void	ft_handle_error(t_error error_code, const char *context);
 int	main(int argc, char **argv);
 
 #endif

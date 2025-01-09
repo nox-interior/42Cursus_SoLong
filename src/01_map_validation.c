@@ -6,12 +6,49 @@
 /*   By: amarroyo <amarroyo@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/09 08:46:56 by amarroyo          #+#    #+#             */
-/*   Updated: 2025/01/09 08:50:18 by amarroyo         ###   ########.fr       */
+/*   Updated: 2025/01/09 15:29:41 by amarroyo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-// Load map
-// Validate map
-// Main for tests
+#include "so_long.h"
 
-#include
+// File handling
+int	ft_check_extension(const char *file_path)
+{
+	int		i;
+	char	*str;
+
+	i = 0;
+	str = file_path;
+	if (! str || ft_strlen(str) < 5)
+	{
+		ft_printf("Error: The file extension is not valid.\n");
+		return (0);
+	}
+	while (str[i] != '\0')
+		i++;
+	i--;
+	if (str[i] != 'r' || str[i - 1] != 'e' || str[i - 2] != 'b'
+		|| str[i - 3] != '.')
+	{
+		ft_printf("Error: The file extension is not valid.\n");
+		return (0);
+	}
+	return (1);
+}
+
+int main(int argc, char **argv)
+{
+    if (argc != 2)
+    {
+        ft_printf("Usage: ./check_extension <file_path>\n");
+        return (1);
+    }
+
+    if (ft_check_extension(argv[1]))
+        ft_printf("File extension is valid.\n");
+    else
+        ft_printf("File extension is invalid.\n");
+
+    return (0);
+}

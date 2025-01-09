@@ -6,7 +6,7 @@
 /*   By: amarroyo <amarroyo@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/18 10:22:05 by amarroyo          #+#    #+#             */
-/*   Updated: 2024/05/08 13:55:37 by amarroyo         ###   ########.fr       */
+/*   Updated: 2025/01/09 15:46:38 by amarroyo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,7 +68,7 @@ char	*ft_extract_line(char *store_buffer)
 		i++;
 	if (store_buffer[i] == '\n')
 		i++;
-	line_buffer = ft_substr(store_buffer, 0, i);
+	line_buffer = ft_substr_gnl(store_buffer, 0, i);
 	if (!line_buffer)
 		return (NULL);
 	return (line_buffer);

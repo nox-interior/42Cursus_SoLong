@@ -6,7 +6,7 @@
 /*   By: amarroyo <amarroyo@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/13 13:58:37 by amarroyo          #+#    #+#             */
-/*   Updated: 2024/05/08 13:56:09 by amarroyo         ###   ########.fr       */
+/*   Updated: 2025/01/09 15:47:18 by amarroyo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ size_t	ft_strlen(const char *s)
 	return (i);
 }
 
-char	*ft_substr(char *s, unsigned int start, size_t len)
+char	*ft_substr_gnl(char *s, unsigned int start, size_t len)
 {
 	size_t	i;
 	char	*substring;

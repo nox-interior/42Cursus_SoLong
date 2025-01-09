@@ -6,20 +6,18 @@
 /*   By: amarroyo <amarroyo@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/09 08:46:56 by amarroyo          #+#    #+#             */
-/*   Updated: 2025/01/09 15:29:41 by amarroyo         ###   ########.fr       */
+/*   Updated: 2025/01/09 15:59:11 by amarroyo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
 
 // File handling
-int	ft_check_extension(const char *file_path)
+int	ft_check_extension(const char *str)
 {
 	int		i;
-	char	*str;
 
 	i = 0;
-	str = file_path;
 	if (! str || ft_strlen(str) < 5)
 	{
 		ft_printf("Error: The file extension is not valid.\n");

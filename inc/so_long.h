@@ -6,7 +6,7 @@
 /*   By: amarroyo <amarroyo@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/09 08:51:40 by amarroyo          #+#    #+#             */
-/*   Updated: 2025/01/09 15:52:02 by amarroyo         ###   ########.fr       */
+/*   Updated: 2025/01/09 15:59:38 by amarroyo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,7 +63,7 @@ typedef struct s_game
 }				t_game;
 
 // Functions
-int	ft_check_extension(const char *file_path);
+int	ft_check_extension(const char *str);
 int main(int argc, char **argv);
 
 #endif

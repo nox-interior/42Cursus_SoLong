@@ -6,7 +6,7 @@
 /*   By: amarroyo <amarroyo@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/09 08:46:56 by amarroyo          #+#    #+#             */
-/*   Updated: 2025/01/09 15:59:11 by amarroyo         ###   ########.fr       */
+/*   Updated: 2025/01/09 16:04:47 by amarroyo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,19 +19,13 @@ int	ft_check_extension(const char *str)
 
 	i = 0;
 	if (! str || ft_strlen(str) < 5)
-	{
-		ft_printf("Error: The file extension is not valid.\n");
 		return (0);
-	}
 	while (str[i] != '\0')
 		i++;
 	i--;
 	if (str[i] != 'r' || str[i - 1] != 'e' || str[i - 2] != 'b'
 		|| str[i - 3] != '.')
-	{
-		ft_printf("Error: The file extension is not valid.\n");
 		return (0);
-	}
 	return (1);
 }
 
@@ -46,7 +40,7 @@ int main(int argc, char **argv)
     if (ft_check_extension(argv[1]))
         ft_printf("File extension is valid.\n");
     else
-        ft_printf("File extension is invalid.\n");
+        ft_printf("Error: File extension is invalid.\n");
 
     return (0);
 }

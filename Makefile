@@ -5,70 +5,67 @@
 #                                                     +:+ +:+         +:+      #
 #    By: amarroyo <amarroyo@student.42madrid.com    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
-#    Created: 2024/06/30 08:41:33 by amarroyo          #+#    #+#              #
-#    Updated: 2024/12/30 12:28:59 by amarroyo         ###   ########.fr        #
+#    Created: 2025/01/09 10:42:37 by amarroyo          #+#    #+#              #
+#    Updated: 2025/01/09 10:42:59 by amarroyo         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 # Standard
-NAME			= so_long
+NAME = so_long
 
 # Directories
-LIBFT			= libft/libft.a
-MLX				= mlx/mlxbuild/libmlx42.a
-MLX_DIR			= mlx
-INC_DIR         = inc/
-SRC_DIR         = src/
-OBJ_DIR         = obj/
+LIBFT_DIR = libft
+LIBFT = $(LIBFT_DIR)/libft.a
+MLX_DIR = mlx
+MLX_BUILD_DIR = $(MLX_DIR)/mlxbuild
+MLX_LIB = $(MLX_BUILD_DIR)/libmlx42.a
+INC_DIR = inc
+SRC_DIR = src
+OBJ_DIR = obj
 
 # Compiler and Flags
-CC				= gcc
-CFLAGS			= -Wall -Werror -Wextra -I$(INC_DIR) -I$(MLX)
-MLX_FLAGS		= -L$(MLX_DIR) -lmlx -L/usr/lib -lXext -lX11 -lm -lz
-rm				= rm -f
-# instrucciones para compilar la lib de CODAM, por el momento no sé si 
-# es necesario modificar esto.
-# gcc main.c ... libmlx42.a -Iinclude -ldl -lglfw -pthread -lm
+CC = gcc
+CFLAGS = -Wall -Wextra -Werror -I$(INC_DIR) -I$(MLX_DIR)/include
+MLX_FLAGS = -L$(MLX_BUILD_DIR) -lmlx42 -I$(MLX_DIR)/include -ldl -lglfw -pthread -lm
+RM = rm -rf
 
+# Source and Object Files
+SRC = $(wildcard $(SRC_DIR)/*.c)
+OBJ = $(SRC:$(SRC_DIR)/%.c=$(OBJ_DIR)/%.o)
 
-# Source Files
-SRC				= $(wildcard $(SRC_DIR)*.c) # Temporary placeholder
-OBJ				= $(SRC_FILES:$(SRC_DIR)%.c=$(OBJ_DIR)%.o)
+# Targets
+all: $(NAME)
 
-# Build rules
-all:			$(NAME)
+$(NAME): $(OBJ) $(LIBFT) $(MLX_LIB)
+	@$(CC) $(CFLAGS) $(OBJ) $(LIBFT) $(MLX_FLAGS) -o $(NAME)
+	@echo "Compiled $(NAME) successfully!"
 
 $(LIBFT):
-	@make -C ./libft
+	@make -C $(LIBFT_DIR)
+	@echo "Built libft library."
 
-$(MLX):
-	@make -C ./mlx
+$(MLX_LIB):
+	@mkdir -p $(MLX_BUILD_DIR)
+	@cmake -S $(MLX_DIR) -B $(MLX_BUILD_DIR)
+	@cmake --build $(MLX_BUILD_DIR) -j4
+	@echo "Built MLX42 library in $(MLX_BUILD_DIR)."
 
-# Building the executable
-$(NAME):		$(OBJ) $(LIBFT) $(MLX)
-	@$(CC) $(CFLAGS) $(INC) $(OBJ) $(LIBFT) $(MLX_FLAGS) $(MLX) -o $(NAME)
+$(OBJ_DIR)/%.o: $(SRC_DIR)/%.c
+	@mkdir -p $(OBJ_DIR)
+	@$(CC) $(CFLAGS) -c $< -o $@
+	@echo "Compiled $< into $@"
 
-# Compile object files from source files
-$(OBJ_DIR)%.o: 	$(SRC_DIR)%.c
-	@mkdir -p $(@D)
-	@$(CC) $(CFLAGS) $(INC) -c $< -o $@
-
-
-
-# Clean object files
 clean:
-	@$(RM) -r $(OBJ_DIR)
-	@make clean -C $(LIBFT)
-	@make clean -C $(MLX)
+	@$(RM) $(OBJ_DIR)
+	@make clean -C $(LIBFT_DIR)
+	@echo "Cleaned object files and libft."
 
-# Clean object files and executable
-fclean:			clean
+fclean: clean
 	@$(RM) $(NAME)
-	@$(RM) $(LIBFT)
-	@$(RM) $(MLX)
+	@make fclean -C $(LIBFT_DIR)
+	@$(RM) $(MLX_BUILD_DIR)
+	@echo "Fully cleaned the project, including MLX42."
 
-# Rebuild everything
-re:				fclean all
+re: fclean all
 
-# Phony targets
-.PHONY:			all clean fclean re
+.PHONY: all clean fclean re

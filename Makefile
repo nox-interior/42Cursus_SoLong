@@ -6,7 +6,7 @@
 #    By: amarroyo <amarroyo@student.42madrid.com    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/01/09 10:42:37 by amarroyo          #+#    #+#              #
-#    Updated: 2025/01/09 16:19:53 by amarroyo         ###   ########.fr        #
+#    Updated: 2025/01/10 10:15:31 by amarroyo         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -32,6 +32,7 @@ RM = rm -rf
 # Source and Object Files
 SRC = 	$(SRC_DIR)01_map_validation.c \
 		$(SRC_DIR)02_error_handling.c \
+		$(SRC_DIR)03_file_parsing.c \
 
 OBJ = $(SRC:$(SRC_DIR)/%.c=$(OBJ_DIR)/%.o)
 

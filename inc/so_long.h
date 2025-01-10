@@ -6,7 +6,7 @@
 /*   By: amarroyo <amarroyo@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/09 08:51:40 by amarroyo          #+#    #+#             */
-/*   Updated: 2025/01/10 11:49:25 by amarroyo         ###   ########.fr       */
+/*   Updated: 2025/01/10 12:30:01 by amarroyo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,6 +40,9 @@
 // Tile size in pixels (industry standard)
 # define TILE_SIZE 32
 
+// Initial grid size
+# define INITIAL_GRID_SIZE 100
+
 // Structure(s)
 /* Map struture*/
 typedef struct s_map
@@ -71,10 +74,10 @@ typedef enum e_error
 	ERR_MISSING_PLAYER,
 	ERR_MISSING_EXIT,
 	ERR_MISSING_COLLECTIBLES,
-	ERR_FILE_PATH_INVALID,	
+	ERR_FILE_PATH_INVALID,
 	ERR_OPEN_FILE,
-	ERR_READ_FILE,	
-	ERR_SYSTEM						// System-level error use perror or strerror
+	ERR_READ_FILE,
+	ERR_SYSTEM
 }			t_error;
 
 // Functions
@@ -82,8 +85,8 @@ t_error	ft_check_extension(const char *str);
 void	ft_system_error_handling(t_error error_code, const char *ctxt);
 void	ft_map_error_handling(t_error error_code);
 void	ft_error_handling(t_error error_code, const char *ctxt);
-int	ft_open_map_file(const char *file_path);
+int		ft_open_map_file(const char *file_path);
 t_error	ft_read_map_lines(int fd, t_map *map);
-int	main(int argc, char **argv);
+int		main(int argc, char **argv);
 
 #endif

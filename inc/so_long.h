@@ -6,7 +6,7 @@
 /*   By: amarroyo <amarroyo@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/09 08:51:40 by amarroyo          #+#    #+#             */
-/*   Updated: 2025/01/09 16:53:59 by amarroyo         ###   ########.fr       */
+/*   Updated: 2025/01/10 10:01:43 by amarroyo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,18 +65,23 @@ typedef struct s_game
 // Error codes
 typedef enum e_error
 {
-	ERR_NONE,				// No error
-	ERR_INVALID_EXTENSION,	// Invalid file extension
-	ERR_FILE_NOT_FOUND,		// File could not be opened
-	ERR_NO_VALID_MAP,		// Map format issues
-	ERR_INVALID_FILE_PATH,	// The path in incorrect or the namefile is too short
-	ERR_SYSTEM,				// System-level error use perror or strerror
-	// Add more error types here as needed
+	ERR_NONE,
+	ERR_EXTENSION_INVALID,
+	ERR_MAP_INVALID,
+	ERR_MISSING_PLAYER,
+	ERR_MISSING_EXIT,
+	ERR_MISSING_COLLECTIBLES,
+	ERR_FILE_PATH_INVALID,	
+	ERR_OPEN_FILE,
+	ERR_READ_FILE,	
+	ERR_SYSTEM						// System-level error use perror or strerror
 }			t_error;
 
 // Functions
 t_error	ft_check_extension(const char *str);
-void	ft_handle_error(t_error error_code, const char *context);
+void	ft_system_error_handling(t_error error_code, const char *ctxt);
+void	ft_map_error_handling(t_error error_code);
+void	ft_error_handling(t_error error_code, const char *ctxt);
 int	main(int argc, char **argv);
 
 #endif

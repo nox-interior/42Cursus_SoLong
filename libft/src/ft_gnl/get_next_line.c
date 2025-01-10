@@ -6,28 +6,12 @@
 /*   By: amarroyo <amarroyo@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/13 13:57:53 by amarroyo          #+#    #+#             */
-/*   Updated: 2025/01/09 15:47:33 by amarroyo         ###   ########.fr       */
+/*   Updated: 2025/01/10 13:19:44 by amarroyo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../inc/get_next_line.h"
-
-void	*ft_calloc(size_t count, size_t size)
-{
-	unsigned char	*str;
-	size_t			i;
-
-	str = (unsigned char *)malloc(count * size);
-	i = 0;
-	if (str == NULL)
-		return (NULL);
-	while (i < count * size)
-	{
-		str[i] = 0;
-		i++;
-	}
-	return (str);
-}
+#include "../../inc/libft.h"
 
 char	*ft_read_file(int fd, char *store_buffer)
 {

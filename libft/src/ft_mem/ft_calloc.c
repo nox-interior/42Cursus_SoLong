@@ -6,7 +6,7 @@
 /*   By: amarroyo <amarroyo@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/02 10:41:34 by amarroyo          #+#    #+#             */
-/*   Updated: 2024/05/08 13:58:45 by amarroyo         ###   ########.fr       */
+/*   Updated: 2025/01/10 13:19:30 by amarroyo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,11 +19,17 @@
 
 void	*ft_calloc(size_t count, size_t size)
 {
-	void	*str;
+	unsigned char	*str;
+	size_t			i;
 
-	str = malloc(count * size);
+	str = (unsigned char *)malloc(count * size);
+	i = 0;
 	if (str == NULL)
 		return (NULL);
-	ft_bzero(str, count * size);
+	while (i < count * size)
+	{
+		str[i] = 0;
+		i++;
+	}
 	return (str);
 }

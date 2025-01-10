@@ -6,7 +6,7 @@
 /*   By: amarroyo <amarroyo@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/19 10:04:51 by amarroyo          #+#    #+#             */
-/*   Updated: 2024/05/08 13:59:48 by amarroyo         ###   ########.fr       */
+/*   Updated: 2025/01/10 12:59:05 by amarroyo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,13 +23,15 @@ char	*ft_strchr(const char *s, int c )
 	size_t	i;
 
 	i = 0;
+	if (!s)
+		return (NULL);
 	while (s[i] != '\0')
 	{
 		if (s[i] == (char)c)
-			return ((char *)&s[i]);
+			return ((char *)s + i);
 		i++;
 	}
 	if (s[i] == (char)c)
-		return ((char *)&s[i]);
+		return ((char *)s + i);
 	return (NULL);
 }

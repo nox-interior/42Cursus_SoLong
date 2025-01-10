@@ -6,7 +6,7 @@
 /*   By: amarroyo <amarroyo@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/09 08:51:40 by amarroyo          #+#    #+#             */
-/*   Updated: 2025/01/10 10:01:43 by amarroyo         ###   ########.fr       */
+/*   Updated: 2025/01/10 11:49:25 by amarroyo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,6 +82,8 @@ t_error	ft_check_extension(const char *str);
 void	ft_system_error_handling(t_error error_code, const char *ctxt);
 void	ft_map_error_handling(t_error error_code);
 void	ft_error_handling(t_error error_code, const char *ctxt);
+int	ft_open_map_file(const char *file_path);
+t_error	ft_read_map_lines(int fd, t_map *map);
 int	main(int argc, char **argv);
 
 #endif

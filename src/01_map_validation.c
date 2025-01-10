@@ -6,7 +6,7 @@
 /*   By: amarroyo <amarroyo@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/09 08:46:56 by amarroyo          #+#    #+#             */
-/*   Updated: 2025/01/10 10:01:55 by amarroyo         ###   ########.fr       */
+/*   Updated: 2025/01/10 11:54:17 by amarroyo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,10 +29,14 @@ t_error	ft_check_extension(const char *str)
 	return (ERR_NONE);
 }
 
-
-int main(int argc, char **argv)
+t_error	ft_validate_map(t_map *map)
 {
-	t_error error;
+	
+}
+
+int	main(int argc, char **argv)
+{
+	t_error	error;
 
 	if (argc != 2)
 	{

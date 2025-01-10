@@ -6,7 +6,7 @@
 /*   By: amarroyo <amarroyo@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/09 16:27:09 by amarroyo          #+#    #+#             */
-/*   Updated: 2025/01/10 10:03:17 by amarroyo         ###   ########.fr       */
+/*   Updated: 2025/01/10 11:55:20 by amarroyo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,8 +54,8 @@ void	ft_map_error_handling(t_error error_code)
 
 void	ft_error_handling(t_error error_code, const char *ctxt)
 {
-	if (error_code == ERR_OPEN_FILE || error_code == ERR_READ_FILE ||
-		error_code == ERR_SYSTEM)
+	if (error_code == ERR_OPEN_FILE || error_code == ERR_READ_FILE
+		|| error_code == ERR_SYSTEM)
 		ft_system_error_handling(error_code, ctxt);
 	else
 		ft_map_error_handling(error_code);

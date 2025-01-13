@@ -6,7 +6,7 @@
 /*   By: amarroyo <amarroyo@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/09 08:46:56 by amarroyo          #+#    #+#             */
-/*   Updated: 2025/01/10 12:51:58 by amarroyo         ###   ########.fr       */
+/*   Updated: 2025/01/13 09:04:10 by amarroyo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,22 +33,3 @@ t_error	ft_check_extension(const char *str)
 // {
 	
 // }
-
-int	main(int argc, char **argv)
-{
-	t_error	error;
-
-	if (argc != 2)
-	{
-		ft_printf("Usage: ./check_extension <file_path>\n");
-		return (1);
-	}
-	error = ft_check_extension(argv[1]);
-	if (error != ERR_NONE)
-	{
-		ft_error_handling(error, argv[1]);
-		return (1);
-	}
-	ft_printf("File extension is valid.\n");
-	return (0);
-}

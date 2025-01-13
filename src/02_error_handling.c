@@ -6,7 +6,7 @@
 /*   By: amarroyo <amarroyo@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/09 16:27:09 by amarroyo          #+#    #+#             */
-/*   Updated: 2025/01/10 11:55:20 by amarroyo         ###   ########.fr       */
+/*   Updated: 2025/01/13 12:48:05 by amarroyo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,7 @@ void	ft_map_error_handling(t_error error_code)
 	else if (error_code == ERR_EXTENSION_INVALID)
 		ft_printf("Error: The file extension is not '.ber'.\n");
 	else if (error_code == ERR_MAP_INVALID)
-		ft_printf("Error: Invalid map format.\n");
+		ft_printf("Error: The map is empty or invalid.\n");
 	else if (error_code == ERR_MISSING_PLAYER)
 		ft_printf("Error: Missing player ('P') in the map.\n");
 	else if (error_code == ERR_MISSING_EXIT)

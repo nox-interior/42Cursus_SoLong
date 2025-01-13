@@ -6,7 +6,7 @@
 #    By: amarroyo <amarroyo@student.42madrid.com    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/01/09 10:42:37 by amarroyo          #+#    #+#              #
-#    Updated: 2025/01/10 12:32:51 by amarroyo         ###   ########.fr        #
+#    Updated: 2025/01/13 09:06:25 by amarroyo         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -34,7 +34,8 @@ SRC = 	$(SRC_DIR)01_map_validation.c \
 		$(SRC_DIR)02_error_handling.c \
 		$(SRC_DIR)03_file_parsing.c \
 		$(SRC_DIR)04_grid_handling.c \
-
+		$(SRC_DIR)main.c \
+		
 OBJ = $(SRC:$(SRC_DIR)/%.c=$(OBJ_DIR)/%.o)
 
 # Targets

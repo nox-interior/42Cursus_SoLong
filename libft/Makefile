@@ -6,7 +6,7 @@
 #    By: amarroyo <amarroyo@student.42madrid.com    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/05/08 14:13:37 by amarroyo          #+#    #+#              #
-#    Updated: 2024/05/08 14:24:51 by amarroyo         ###   ########.fr        #
+#    Updated: 2025/01/13 16:48:48 by amarroyo         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -85,8 +85,6 @@ FTPRINTF_DIR	=	$(SRC_DIR)ft_printf/ft_printf.c \
 
 GNL_DIR			=	$(SRC_DIR)ft_gnl/get_next_line.c \
 					$(SRC_DIR)ft_gnl/get_next_line_utils.c \
-					$(SRC_DIR)ft_gnl/get_next_line_bonus.c \
-					$(SRC_DIR)ft_gnl/get_next_line_utils_bonus.c
 
 # Concatenate all source files
 SRC 			= $(FTIS_DIR) $(FTMEM_DIR) $(FTPUT_DIR) $(FTTO_DIR) $(FTTO_DIR) $(FTSTR_DIR) $(FTLST_DIR) $(FTPRINTF_DIR) $(GNL_DIR)

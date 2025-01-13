@@ -6,7 +6,7 @@
 /*   By: amarroyo <amarroyo@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/13 13:57:53 by amarroyo          #+#    #+#             */
-/*   Updated: 2025/01/10 13:19:44 by amarroyo         ###   ########.fr       */
+/*   Updated: 2025/01/13 16:41:26 by amarroyo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -87,17 +87,20 @@ char	*ft_trim_buffer(char *store_buffer)
 	return (remaining_buffer);
 }
 
-char	*get_next_line(int fd)
+char	*get_next_line(int fd, char **store_buffer)
 {
 	char		*current_line;
-	static char	*store_buffer = NULL;
 
-	if (fd < 0)
+	if (fd < 0 || BUFFER_SIZE <= 0 || !store_buffer)
 		return (NULL);
-	store_buffer = ft_read_file(fd, store_buffer);
-	if (!store_buffer)
+	*store_buffer = ft_read_file(fd, *store_buffer);
+	if (!*store_buffer)
 		return (NULL);
-	current_line = ft_extract_line(store_buffer);
-	store_buffer = ft_trim_buffer(store_buffer);
+	current_line = ft_extract_line(*store_buffer);
+	if (!current_line)
+		return (NULL);
+	*store_buffer = ft_trim_buffer(*store_buffer);
+	if (!*store_buffer)
+		return (NULL);
 	return (current_line);
 }

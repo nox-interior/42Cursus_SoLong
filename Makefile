@@ -6,7 +6,7 @@
 #    By: amarroyo <amarroyo@student.42madrid.com    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/01/09 10:42:37 by amarroyo          #+#    #+#              #
-#    Updated: 2025/01/13 09:06:25 by amarroyo         ###   ########.fr        #
+#    Updated: 2025/01/14 11:56:21 by amarroyo         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -32,7 +32,8 @@ RM = rm -rf
 # Source and Object Files
 SRC = 	$(SRC_DIR)01_map_validation.c \
 		$(SRC_DIR)02_error_handling.c \
-		$(SRC_DIR)03_file_parsing.c \
+		$(SRC_DIR)03_a_file_parsing.c \
+		$(SRC_DIR)03_b_file_parsing.c \
 		$(SRC_DIR)04_grid_handling.c \
 		$(SRC_DIR)main.c \
 		

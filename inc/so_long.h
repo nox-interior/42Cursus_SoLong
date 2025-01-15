@@ -6,7 +6,7 @@
 /*   By: amarroyo <amarroyo@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/09 08:51:40 by amarroyo          #+#    #+#             */
-/*   Updated: 2025/01/14 11:57:13 by amarroyo         ###   ########.fr       */
+/*   Updated: 2025/01/15 11:56:10 by amarroyo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,12 +30,6 @@
 # define PLAYER 'P'
 # define EXIT 'E'
 # define COLLECTIBLE 'C'
-
-// Error codes
-# define ERR_FILE_OPEN 1
-# define ERR_FILE_READ 2
-# define ERR_INVALID_MAP 3
-# define ERR_MALLOC 4
 
 // Tile size in pixels (industry standard)
 # define TILE_SIZE 32
@@ -91,6 +85,8 @@ char	**ft_allocate_grid(int initial_size);
 t_error	ft_parse_map(const char *file_path, t_map *map);
 t_error	ft_read_map_lines(int fd, t_map *map);
 void	ft_free_map_grid(char **grid, int line_count);
+t_error	ft_validate_characters(t_map *map);
+t_error	ft_validate_map(t_map *map);
 int		main(int argc, char **argv);
 
 #endif

@@ -6,7 +6,7 @@
 #    By: amarroyo <amarroyo@student.42madrid.com    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/01/09 10:42:37 by amarroyo          #+#    #+#              #
-#    Updated: 2025/01/15 11:56:25 by amarroyo         ###   ########.fr        #
+#    Updated: 2025/01/15 12:31:05 by amarroyo         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -37,6 +37,7 @@ SRC = 	$(SRC_DIR)01_extension_validation.c \
 		$(SRC_DIR)04_grid_handling.c \
 		$(SRC_DIR)05_a_map_validation.c \
 		$(SRC_DIR)05_b_map_validation.c \
+		$(SRC_DIR)06_map_handling.c \
 		$(SRC_DIR)main.c \
 		
 OBJ = $(SRC:$(SRC_DIR)/%.c=$(OBJ_DIR)/%.o)

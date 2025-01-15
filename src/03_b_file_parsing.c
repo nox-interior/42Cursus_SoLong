@@ -6,7 +6,7 @@
 /*   By: amarroyo <amarroyo@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/14 11:50:54 by amarroyo          #+#    #+#             */
-/*   Updated: 2025/01/15 12:19:15 by amarroyo         ###   ########.fr       */
+/*   Updated: 2025/01/15 12:32:01 by amarroyo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,6 +42,7 @@ t_error	ft_parse_map(const char *file_path, t_map *map)
 	int		fd;
 	t_error	error;
 
+	ft_init_map(map);
 	error = ft_open_and_allocate(file_path, map, &fd);
 	if (error != ERR_NONE)
 		return (error);

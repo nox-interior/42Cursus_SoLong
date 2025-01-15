@@ -6,7 +6,7 @@
 /*   By: amarroyo <amarroyo@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/09 08:51:40 by amarroyo          #+#    #+#             */
-/*   Updated: 2025/01/15 11:56:10 by amarroyo         ###   ########.fr       */
+/*   Updated: 2025/01/15 12:30:33 by amarroyo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -87,6 +87,7 @@ t_error	ft_read_map_lines(int fd, t_map *map);
 void	ft_free_map_grid(char **grid, int line_count);
 t_error	ft_validate_characters(t_map *map);
 t_error	ft_validate_map(t_map *map);
+void	ft_init_map(t_map *map);
 int		main(int argc, char **argv);
 
 #endif

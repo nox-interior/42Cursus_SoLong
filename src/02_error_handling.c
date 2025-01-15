@@ -6,7 +6,7 @@
 /*   By: amarroyo <amarroyo@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/09 16:27:09 by amarroyo          #+#    #+#             */
-/*   Updated: 2025/01/15 15:18:15 by amarroyo         ###   ########.fr       */
+/*   Updated: 2025/01/15 15:34:25 by amarroyo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,9 +43,9 @@ void	ft_map_error_handling(t_error error_code)
 	else if (error_code == ERR_MAP_INVALID)
 		ft_printf("Error: The map is empty or invalid.\n");
 	else if (error_code == ERR_PLAYER)
-		ft_printf("Error: 'P' is non-existent or 'P' > 1'.\n");
+		ft_printf("Error: Invalid 'P' count (must be 1).\n");
 	else if (error_code == ERR_EXIT)
-		ft_printf("Error: 'E' is non-existent or 'E' > 1.\n");
+		ft_printf("Error: Invalid 'E' count (must be 1).\n");
 	else if (error_code == ERR_MISSING_COLLECTIBLES)
 		ft_printf("Error: Missing collectibles ('C') in the map.\n");
 	else

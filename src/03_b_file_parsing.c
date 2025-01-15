@@ -6,7 +6,7 @@
 /*   By: amarroyo <amarroyo@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/14 11:50:54 by amarroyo          #+#    #+#             */
-/*   Updated: 2025/01/15 12:32:01 by amarroyo         ###   ########.fr       */
+/*   Updated: 2025/01/15 17:07:15 by amarroyo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,6 +51,9 @@ t_error	ft_parse_map(const char *file_path, t_map *map)
 	if (error != ERR_NONE)
 		return (ft_handle_map_error(error, map, fd));
 	error = ft_validate_map(map);
+	if (error != ERR_NONE)
+		return (ft_handle_map_error(error, map, fd));
+	error = ft_validate_path(map);
 	if (error != ERR_NONE)
 		return (ft_handle_map_error(error, map, fd));
 	return (ERR_NONE);

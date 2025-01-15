@@ -6,7 +6,7 @@
 /*   By: amarroyo <amarroyo@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/09 16:27:09 by amarroyo          #+#    #+#             */
-/*   Updated: 2025/01/15 15:34:25 by amarroyo         ###   ########.fr       */
+/*   Updated: 2025/01/15 16:16:36 by amarroyo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,6 +48,8 @@ void	ft_map_error_handling(t_error error_code)
 		ft_printf("Error: Invalid 'E' count (must be 1).\n");
 	else if (error_code == ERR_MISSING_COLLECTIBLES)
 		ft_printf("Error: Missing collectibles ('C') in the map.\n");
+	else if (error_code == ERR_PATH_INVALID)
+		ft_printf("Error: This map does not have a valid path.\n");
 	else
 		ft_printf("An unknown error occurred.\n");
 }

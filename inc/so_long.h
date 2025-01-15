@@ -6,7 +6,7 @@
 /*   By: amarroyo <amarroyo@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/09 08:51:40 by amarroyo          #+#    #+#             */
-/*   Updated: 2025/01/15 15:18:36 by amarroyo         ###   ########.fr       */
+/*   Updated: 2025/01/15 17:19:35 by amarroyo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,6 +71,7 @@ typedef enum e_error
 	ERR_FILE_PATH_INVALID,
 	ERR_OPEN_FILE,
 	ERR_READ_FILE,
+	ERR_PATH_INVALID,
 	ERR_SYSTEM
 }			t_error;
 
@@ -87,6 +88,9 @@ t_error	ft_read_map_lines(int fd, t_map *map);
 void	ft_free_map_grid(char **grid, int line_count);
 t_error	ft_validate_characters(t_map *map);
 t_error	ft_validate_map(t_map *map);
+char	**ft_duplicate_grid(char **grid, uint32_t height);
+void	ft_flood_fill(t_map *map, char **grid, int y, int x);
+t_error	ft_validate_path(t_map *map);
 void	ft_init_map(t_map *map);
 int		main(int argc, char **argv);
 

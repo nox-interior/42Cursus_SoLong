@@ -6,7 +6,7 @@
 /*   By: amarroyo <amarroyo@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/15 12:29:13 by amarroyo          #+#    #+#             */
-/*   Updated: 2025/01/15 12:29:16 by amarroyo         ###   ########.fr       */
+/*   Updated: 2025/01/15 15:21:19 by amarroyo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,9 +55,9 @@ static t_error	ft_loop_grid_and_count(t_map *map)
 static t_error	ft_check_required_elements(t_map *map)
 {
 	if (map->players != 1)
-		return (ERR_MISSING_PLAYER);
-	if (map->exits == 0)
-		return (ERR_MISSING_EXIT);
+		return (ERR_PLAYER);
+	if (map->exits != 1)
+		return (ERR_EXIT);
 	if (map->collectibles == 0)
 		return (ERR_MISSING_COLLECTIBLES);
 	return (ERR_NONE);

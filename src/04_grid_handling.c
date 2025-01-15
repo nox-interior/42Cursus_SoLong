@@ -6,13 +6,13 @@
 /*   By: amarroyo <amarroyo@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/10 12:12:49 by amarroyo          #+#    #+#             */
-/*   Updated: 2025/01/14 12:17:02 by amarroyo         ###   ########.fr       */
+/*   Updated: 2025/01/14 12:48:14 by amarroyo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
 
-static t_error	ft_validate_line(char *line, t_map *map, int line_count)
+static t_error	ft_validate_line(char *line, t_map *map, uint32_t line_count)
 {
 	size_t	line_length;
 

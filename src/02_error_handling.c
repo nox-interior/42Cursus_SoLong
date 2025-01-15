@@ -6,7 +6,7 @@
 /*   By: amarroyo <amarroyo@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/09 16:27:09 by amarroyo          #+#    #+#             */
-/*   Updated: 2025/01/13 12:48:05 by amarroyo         ###   ########.fr       */
+/*   Updated: 2025/01/15 12:06:58 by amarroyo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,18 +16,18 @@ void	ft_system_error_handling(t_error error_code, const char *ctxt)
 {
 	if (ctxt)
 	{
-		if (error_code == ERR_FILE_OPEN)
+		if (error_code == ERR_OPEN_FILE)
 			ft_printf("Error opening file '%s': %s\n", ctxt, strerror(errno));
-		else if (error_code == ERR_FILE_READ)
+		else if (error_code == ERR_READ_FILE)
 			ft_printf("Error reading file '%s': %s\n", ctxt, strerror(errno));
 		else if (error_code == ERR_SYSTEM)
 			ft_printf("System erros '%s': %s\n", ctxt, strerror(errno));
 	}
 	else
 	{
-		if (error_code == ERR_FILE_OPEN)
+		if (error_code == ERR_OPEN_FILE)
 			perror("Error opening file");
-		else if (error_code == ERR_FILE_READ)
+		else if (error_code == ERR_READ_FILE)
 			perror("Error reading file");
 		else if (error_code == ERR_SYSTEM)
 			perror("System error");

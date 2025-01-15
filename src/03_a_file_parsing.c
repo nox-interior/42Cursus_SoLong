@@ -6,7 +6,7 @@
 /*   By: amarroyo <amarroyo@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/10 10:14:27 by amarroyo          #+#    #+#             */
-/*   Updated: 2025/01/14 12:09:56 by amarroyo         ###   ########.fr       */
+/*   Updated: 2025/01/15 12:05:30 by amarroyo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ int	ft_open_map_file(const char *file_path)
 
 	fd = open(file_path, O_RDONLY);
 	if (fd == -1)
-		ft_system_error_handling(ERR_FILE_OPEN, file_path);
+		ft_system_error_handling(ERR_OPEN_FILE, file_path);
 	return (fd);
 }
 

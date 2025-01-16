@@ -6,7 +6,7 @@
 /*   By: amarroyo <amarroyo@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/15 11:47:41 by amarroyo          #+#    #+#             */
-/*   Updated: 2025/01/15 11:50:30 by amarroyo         ###   ########.fr       */
+/*   Updated: 2025/01/16 10:01:40 by amarroyo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,27 +22,20 @@ static t_error	ft_validate_dimensions(t_map *map)
 static t_error	ft_validate_boundaries(t_map *map)
 {
 	uint32_t	row;
-	uint32_t	col;
 
 	row = 0;
-	while (row < map->height)
+	while (row < map->width)
 	{
-		if (row == 0 || row == map->height - 1)
-		{
-			col = 0;
-			while (col < map->width)
-			{
-				if (map->grid[row][col] != WALL)
-					return (ERR_MAP_INVALID);
-				col++;
-			}
-		}
-		else
-		{
-			if (map->grid[row][0] != WALL || map->grid[row][map->width
-				- 1] != WALL)
-				return (ERR_MAP_INVALID);
-		}
+		if (map->grid[0][row] != WALL || map->grid[map->height
+			- 1][row] != WALL)
+			return (ERR_MAP_INVALID);
+		row++;
+	}
+	row = 1;
+	while (row < map->height - 1)
+	{
+		if (map->grid[row][0] != WALL || map->grid[row][map->width - 1] != WALL)
+			return (ERR_MAP_INVALID);
 		row++;
 	}
 	return (ERR_NONE);

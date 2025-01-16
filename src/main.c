@@ -78,51 +78,73 @@
 // 	return (0);
 // }
 
-#include "so_long.h"
+// Main to check map validation (not path validation)
+// #include "so_long.h"
 
+// int	main(int argc, char **argv)
+// {
+// 	t_map	map;
+// 	t_error	error;
+
+// 	// Check for proper usage
+// 	if (argc != 2)
+// 	{
+// 		ft_printf("Usage: ./so_long <map_file.ber>\n");
+// 		return (1);
+// 	}
+
+// 	// Validate file extension
+// 	error = ft_check_extension(argv[1]);
+// 	if (error != ERR_NONE)
+// 	{
+// 		ft_map_error_handling(error);
+// 		return (1);
+// 	}
+
+// 	// Parse the map file
+// 	error = ft_parse_map(argv[1], &map);
+// 	if (error != ERR_NONE)
+// 	{
+// 		ft_error_handling(error, argv[1]);
+// 		return (1);
+// 	}
+
+// 	// Display success and map information
+// 	ft_printf("Map loaded successfully!\n");
+// 	ft_printf("Map dimensions: %d x %d\n", map.width, map.height);
+
+// 	for (uint32_t i = 0; i < map.height; i++)
+// 		ft_printf("%s", map.grid[i]);
+
+// 	// Free allocated resources
+// 	ft_free_map_grid(map.grid, map.height);
+// 	return (0);
+// }
+
+// Main for testing map parsing and validation.
 int	main(int argc, char **argv)
 {
 	t_map	map;
 	t_error	error;
 
-	// Check for proper usage
 	if (argc != 2)
 	{
 		ft_printf("Usage: ./so_long <map_file.ber>\n");
-		return (1);
+		return (EXIT_FAILURE);
 	}
 
-	// Validate file extension
-	error = ft_check_extension(argv[1]);
-	if (error != ERR_NONE)
-	{
-		ft_map_error_handling(error);
-		return (1);
-	}
-
-	// Initialise map structure
-	map.grid = NULL;
-	map.width = 0;
-	map.height = 0;
-
-	// Parse the map file
+	// Parse and validate the map.
 	error = ft_parse_map(argv[1], &map);
 	if (error != ERR_NONE)
 	{
-		ft_error_handling(error, argv[1]);
-		return (1);
+		ft_map_error_handling(error);
+		return (EXIT_FAILURE);
 	}
 
-	// Display success and map information
-	ft_printf("Map loaded successfully!\n");
-	ft_printf("Map dimensions: %d x %d\n", map.width, map.height);
-
-	for (uint32_t i = 0; i < map.height; i++)
-		ft_printf("%s", map.grid[i]);
-
-	// Free allocated resources
+	// If all checks pass.
+	ft_printf("Map validation successful!\n");
 	ft_free_map_grid(map.grid, map.height);
-	return (0);
+	return (EXIT_SUCCESS);
 }
 
 // Main to check GNL

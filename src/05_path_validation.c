@@ -6,7 +6,7 @@
 /*   By: amarroyo <amarroyo@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/15 16:14:20 by amarroyo          #+#    #+#             */
-/*   Updated: 2025/01/20 16:26:51 by amarroyo         ###   ########.fr       */
+/*   Updated: 2025/01/20 17:58:13 by amarroyo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,87 +34,23 @@ char	**ft_duplicate_grid(char **grid, uint32_t height)
 	return (copy);
 }
 
-void	ft_flood_fill(t_map *map, char **grid, int start_y, int start_x)
+
+void	ft_flood_fill(t_map *map, char **grid, int y, int x)
 {
-	t_point	stack[map->width * map->height]; //FOrbiden variable array
-	int		top;
-	t_point	p;
-
-	top = -1;
-	stack[++top] = (t_point){start_x, start_y};
-	while (top >= 0)
-	{
-		p = stack[top--];
-		if (p.y < 0 || p.y >= (int)map->height || p.x < 0
-			|| p.x >= (int)map->width)
-			continue ;
-		if (grid[p.y][p.x] == WALL || grid[p.y][p.x] == 'V')
-			continue ;
-		if (grid[p.y][p.x] == COLLECTIBLE)
-			map->collectibles--;
-		if (grid[p.y][p.x] == EXIT)
-			map->exits--;
-		grid[p.y][p.x] = 'V';
-		if (p.x + 1 < (int)map->width)
-			stack[++top] = (t_point){p.x + 1, p.y};
-		if (p.x - 1 >= 0)
-			stack[++top] = (t_point){p.x - 1, p.y};
-		if (p.y + 1 < (int)map->height)
-			stack[++top] = (t_point){p.x, p.y + 1};
-		if (p.y - 1 >= 0)
-			stack[++top] = (t_point){p.x, p.y - 1};
-	}
+	if (y < 0 || y >= (int)map->height || x < 0 || x >= (int)map->width)
+		return ;
+	if (grid[y][x] == WALL || grid[y][x] == 'V')
+		return ;
+	if (grid[y][x] == COLLECTIBLE)
+		map->collectibles--;
+	if (grid[y][x] == EXIT)
+		map->exits--;
+	grid[y][x] = 'V';
+	ft_flood_fill(map, grid, y + 1, x);
+	ft_flood_fill(map, grid, y - 1, x);
+	ft_flood_fill(map, grid, y, x + 1);
+	ft_flood_fill(map, grid, y, x - 1);
 }
-
-// void ft_flood_fill(t_map *map, char **grid, int start_y, int start_x)
-// {
-//     typedef struct { int x, y; } t_point;
-
-//     t_point stack[map->width * map->height];
-//     int     top = -1;
-
-//     stack[++top] = (t_point){start_x, start_y};
-
-//     while (top >= 0)
-//     {
-//         t_point p = stack[top--];
-
-//         if (p.y < 0 || p.y >= (int)map->height || p.x < 0
-//	|| p.x >= (int)map->width)
-//             continue ;
-//         if (grid[p.y][p.x] == WALL || grid[p.y][p.x] == 'V')
-//             continue ;
-
-//         if (grid[p.y][p.x] == COLLECTIBLE)
-//             map->collectibles--;
-//         if (grid[p.y][p.x] == EXIT)
-//             map->exits--;
-
-//         grid[p.y][p.x] = 'V';
-
-//         stack[++top] = (t_point){p.x + 1, p.y};
-//         stack[++top] = (t_point){p.x - 1, p.y};
-//         stack[++top] = (t_point){p.x, p.y + 1};
-//         stack[++top] = (t_point){p.x, p.y - 1};
-//     }
-// }
-
-// void	ft_flood_fill(t_map *map, char **grid, int y, int x)
-// {
-// 	if (y < 0 || y >= (int)map->height || x < 0 || x >= (int)map->width)
-// 		return ;
-// 	if (grid[y][x] == WALL || grid[y][x] == 'V')
-// 		return ;
-// 	if (grid[y][x] == COLLECTIBLE)
-// 		map->collectibles--;
-// 	if (grid[y][x] == EXIT)
-// 		map->exits--;
-// 	grid[y][x] = 'V';
-// 	ft_flood_fill(map, grid, y + 1, x);
-// 	ft_flood_fill(map, grid, y - 1, x);
-// 	ft_flood_fill(map, grid, y, x + 1);
-// 	ft_flood_fill(map, grid, y, x - 1);
-// }
 
 static t_error	ft_check_unreachable_exits(char **temp_grid, t_map *map)
 {

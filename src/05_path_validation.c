@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   06_dupgridation.c                               :+:      :+:    :+:   */
+/*   05_path_validation.c                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: amarroyo <amarroyo@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/15 16:14:20 by amarroyo          #+#    #+#             */
-/*   Updated: 2025/01/18 11:49:30 by amarroyo         ###   ########.fr       */
+/*   Updated: 2025/01/20 16:26:51 by amarroyo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,7 @@ char	**ft_duplicate_grid(char **grid, uint32_t height)
 
 void	ft_flood_fill(t_map *map, char **grid, int start_y, int start_x)
 {
-	t_point	stack[map->width * map->height];
+	t_point	stack[map->width * map->height]; //FOrbiden variable array
 	int		top;
 	t_point	p;
 

@@ -6,7 +6,7 @@
 /*   By: amarroyo <amarroyo@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/20 09:08:54 by amarroyo          #+#    #+#             */
-/*   Updated: 2025/01/20 17:13:33 by amarroyo         ###   ########.fr       */
+/*   Updated: 2025/01/20 18:01:36 by amarroyo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,13 +64,6 @@ typedef struct s_config
 	uint32_t	max_map_width;
 	uint32_t	max_map_height;
 }				t_config;
-
-/* Flood fill*/
-typedef struct s_point
-{
-	int	x;
-	int	y; 
-}				t_point;
 
 // Error codes
 typedef enum e_error

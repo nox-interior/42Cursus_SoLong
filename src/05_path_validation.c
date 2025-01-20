@@ -6,7 +6,7 @@
 /*   By: amarroyo <amarroyo@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/15 16:14:20 by amarroyo          #+#    #+#             */
-/*   Updated: 2025/01/20 18:06:59 by amarroyo         ###   ########.fr       */
+/*   Updated: 2025/01/20 18:20:27 by amarroyo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,6 +34,7 @@ char	**ft_duplicate_grid(char **grid, uint32_t height)
 	return (copy);
 }
 
+//puede que sea necesario integrar la 'V' dentro de la struct como xxx->visited
 void	ft_flood_fill(t_map *map, char **grid, int y, int x)
 {
 	if (y < 0 || y >= (int)map->height || x < 0 || x >= (int)map->width)

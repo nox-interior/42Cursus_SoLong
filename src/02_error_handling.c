@@ -6,7 +6,7 @@
 /*   By: amarroyo <amarroyo@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/09 16:27:09 by amarroyo          #+#    #+#             */
-/*   Updated: 2025/01/20 09:24:24 by amarroyo         ###   ########.fr       */
+/*   Updated: 2025/01/20 11:14:56 by amarroyo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,8 +50,8 @@ void	ft_map_error_handling(t_error error_code)
 		ft_printf("Error: Missing collectibles ('C') in the map.\n");
 	else if (error_code == ERR_PATH_INVALID)
 		ft_printf("Error: The map does not have a valid path.\n");
-	//else if (error_code == ERR_SCREEN_LIMIT)
-	//	ft_printf("Error: The map is too large to be playable.\n");
+	else if (error_code == ERR_SCREEN_LIMIT)
+		ft_printf("Error: The map is too large to be playable.\n");
 	else if (error_code != ERR_SYSTEM)
 		ft_printf("An unknown error occurred.\n");
 }

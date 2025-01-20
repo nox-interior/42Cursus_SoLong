@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   05_a_map_validation.c                              :+:      :+:    :+:   */
+/*   04_a_map_validation.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: amarroyo <amarroyo@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/15 11:47:41 by amarroyo          #+#    #+#             */
-/*   Updated: 2025/01/18 12:11:53 by amarroyo         ###   ########.fr       */
+/*   Updated: 2025/01/20 13:31:46 by amarroyo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,6 +38,14 @@ static t_error	ft_validate_boundaries(t_map *map)
 			return (ERR_MAP_INVALID);
 		row++;
 	}
+	return (ERR_NONE);
+}
+
+t_error	ft_validate_screen_limit(t_map *map, t_config *config)
+{
+	if (map->width > config->max_map_width
+		|| map->height > config->max_map_height)
+		return (ERR_SCREEN_LIMIT);
 	return (ERR_NONE);
 }
 

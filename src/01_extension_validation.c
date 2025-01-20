@@ -6,13 +6,12 @@
 /*   By: amarroyo <amarroyo@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/09 08:46:56 by amarroyo          #+#    #+#             */
-/*   Updated: 2025/01/18 12:07:15 by amarroyo         ###   ########.fr       */
+/*   Updated: 2025/01/20 12:58:46 by amarroyo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
 
-// File handling
 t_error	ft_check_extension(const char *str)
 {
 	int		i;

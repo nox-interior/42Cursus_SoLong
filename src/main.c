@@ -6,7 +6,7 @@
 /*   By: amarroyo <amarroyo@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/20 10:12:47 by amarroyo          #+#    #+#             */
-/*   Updated: 2025/01/20 13:17:35 by amarroyo         ###   ########.fr       */
+/*   Updated: 2025/01/20 18:06:51 by amarroyo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,6 @@ int	main(int argc, char **argv)
 		return (EXIT_FAILURE);
 	}
 	ft_printf("Map validation successful!\n");
-	// Free allocated map resources
 	ft_free_map_grid(map.grid, map.height);
 	return (EXIT_SUCCESS);
 }

@@ -6,7 +6,7 @@
 /*   By: amarroyo <amarroyo@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/10 10:14:27 by amarroyo          #+#    #+#             */
-/*   Updated: 2025/01/15 12:05:30 by amarroyo         ###   ########.fr       */
+/*   Updated: 2025/01/20 10:00:27 by amarroyo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ int	ft_open_map_file(const char *file_path)
 
 	fd = open(file_path, O_RDONLY);
 	if (fd == -1)
-		ft_system_error_handling(ERR_OPEN_FILE, file_path);
+		return (-1);
 	return (fd);
 }
 
@@ -38,12 +38,15 @@ char	**ft_allocate_grid(int initial_size)
 {
 	char	**grid;
 
+	printf("Debug (ft_allocate_grid): Received initial_size=%d\n", initial_size);
+	printf("Debug (ft_allocate_grid): Allocating grid with initial_size=%d\n", initial_size);
 	grid = malloc(initial_size * sizeof(char *));
 	if (!grid)
 	{
 		ft_system_error_handling(ERR_SYSTEM, NULL);
 		return (NULL);
 	}
+	printf("Debug (ft_allocate_grid): Allocation successful, returning grid pointer\n");
 	ft_initialize_grid(grid, initial_size);
 	return (grid);
 }

@@ -6,7 +6,7 @@
 /*   By: amarroyo <amarroyo@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/10 12:12:49 by amarroyo          #+#    #+#             */
-/*   Updated: 2025/01/14 12:48:14 by amarroyo         ###   ########.fr       */
+/*   Updated: 2025/01/20 10:27:44 by amarroyo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,8 +66,10 @@ t_error	ft_read_map_lines(int fd, t_map *map)
 	store_buffer = NULL;
 	line_count = 0;
 	line = get_next_line(fd, &store_buffer);
+	printf("Debug (ft_read_map_lines): Starting to read map lines, MAX_MAP_H=%d\n", MAX_MAP_H);
 	while (line != NULL)
 	{
+		printf("Debug (ft_read_map_lines): Reading line %d\n", line_count);
 		error = ft_process_line(line, map, line_count);
 		if (error != ERR_NONE)
 		{
@@ -77,6 +79,7 @@ t_error	ft_read_map_lines(int fd, t_map *map)
 		line_count++;
 		line = get_next_line(fd, &store_buffer);
 	}
+	printf("Debug (ft_read_map_lines): Finished reading, map->height=%d\n", map->height);
 	free(store_buffer);
 	map->grid[line_count] = NULL;
 	map->height = line_count;

@@ -5,20 +5,20 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: amarroyo <amarroyo@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/01/09 08:51:40 by amarroyo          #+#    #+#             */
-/*   Updated: 2025/01/16 11:21:00 by amarroyo         ###   ########.fr       */
+/*   Created: 2025/01/20 09:08:54 by amarroyo          #+#    #+#             */
+/*   Updated: 2025/01/20 10:27:49 by amarroyo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef SO_LONG_H
 # define SO_LONG_H
 
-# include <fcntl.h>			// open
-# include <unistd.h>		// close - read - write
-# include <stdlib.h>		// malloc - free -exit
-# include <stdio.h>			// perror
-# include <errno.h>			// perror
-# include <string.h>		// strerror
+# include <fcntl.h>
+# include <unistd.h>
+# include <stdlib.h>
+# include <stdio.h>
+# include <errno.h>
+# include <string.h>
 # include "libft.h"
 # include "get_next_line.h"
 # include "ft_printf.h"
@@ -31,32 +31,40 @@
 # define EXIT 'E'
 # define COLLECTIBLE 'C'
 
-// Tile size in pixels (industry standard)
+// Tile size (px)
 # define TILE_SIZE 32
 
-// Initial grid size
-# define INITIAL_GRID_SIZE 100
+// Max map dimensions (tile)
+// # undef MAX_MAP_H
+// # undef MAX_MAP_W
+# define MAX_MAP_W 40
+# define MAX_MAP_H 22
 
-// Structure(s)
-/* Map struture*/
+// Initial grid size
+# define INITIAL_GRID_SIZE 22
+
+// Window dimensions
+
+// Structures
+/* Map structure*/
 typedef struct s_map
 {
-	char		**grid;			// 2D array for the map layout
-	uint32_t	width;			// Width of the map (columns)
-	uint32_t	height;			// Height of the map (rows)
-	int			player_x;		// Player's X position
-	int			player_y;		// Player's Y position
-	uint32_t	collectibles;	// Count of collectibles
-	uint32_t	exits;			// Number of exits
-	uint32_t	players;		// Number of players (should be 1)
+	char		**grid;
+	uint32_t	width;
+	uint32_t	height;
+	int			player_x;
+	int			player_y;
+	uint32_t	collectibles;
+	uint32_t	exits;
+	uint32_t	players;
 }				t_map;
 
-/* game Structure*/
+/* Game structure*/
 typedef struct s_game
 {
-	t_map		*map;			// Pointer to the map structure
-	mlx_t		*mlx;			// MLX42 instance (includes the window)
-	uint32_t	moves;			// Number of moves made by the player
+	t_map		*map;
+	mlx_t		*mlx;
+	uint32_t	moves;
 }				t_game;
 
 // Error codes
@@ -73,7 +81,7 @@ typedef enum e_error
 	ERR_READ_FILE,
 	ERR_PATH_INVALID,
 	ERR_SYSTEM
-}			t_error;
+}				t_error;
 
 // Functions
 t_error	ft_check_extension(const char *str);

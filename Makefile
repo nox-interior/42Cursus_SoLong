@@ -6,7 +6,7 @@
 #    By: amarroyo <amarroyo@student.42madrid.com    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/01/09 10:42:37 by amarroyo          #+#    #+#              #
-#    Updated: 2025/01/20 16:28:21 by amarroyo         ###   ########.fr        #
+#    Updated: 2025/01/21 10:59:21 by amarroyo         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -40,6 +40,7 @@ SRC = 	$(SRC_DIR)/00_struct_init.c \
 		$(SRC_DIR)/04_a_map_validation.c \
 		$(SRC_DIR)/04_b_map_validation.c \
 		$(SRC_DIR)/05_path_validation.c \
+		$(SRC_DIR)/prueba_floor.c \
 		$(SRC_DIR)/main.c
 		
 OBJ = $(SRC:$(SRC_DIR)/%.c=$(OBJ_DIR)/%.o)

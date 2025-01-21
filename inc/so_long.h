@@ -6,7 +6,7 @@
 /*   By: amarroyo <amarroyo@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/20 09:08:54 by amarroyo          #+#    #+#             */
-/*   Updated: 2025/01/20 18:08:27 by amarroyo         ###   ########.fr       */
+/*   Updated: 2025/01/21 13:19:28 by amarroyo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@
 # define COLLECTIBLE 'C'
 
 // Tile size (px)
-# define TILE_SIZE 32
+# define TILE_SIZE 64
 
 // Structures
 /* Map structure*/
@@ -94,7 +94,6 @@ t_error			ft_parse_map(const char *file_path, t_map *map,
 					t_config *config);
 t_error			ft_process_line(char *line, t_map *map, int line_count);
 t_error			ft_read_map_lines(int fd, t_map *map, t_config *config);
-// t_error	ft_read_map_lines(int fd, t_map *map);
 void			ft_free_map_grid(char **grid, int line_count);
 t_error			ft_validate_characters(t_map *map);
 t_error			ft_validate_screen_limit(t_map *map, t_config *config);
@@ -105,5 +104,6 @@ t_error			ft_validate_path(t_map *map);
 void			ft_init_map(t_map *map);
 void			ft_init_config(t_config *config);
 int				main(int argc, char **argv);
+void	render_floor(mlx_t *mlx, mlx_image_t *floor_image, t_map *map);
 
 #endif

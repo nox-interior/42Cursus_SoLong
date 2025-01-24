@@ -6,7 +6,7 @@
 /*   By: amarroyo <amarroyo@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/20 10:12:47 by amarroyo          #+#    #+#             */
-/*   Updated: 2025/01/21 13:21:07 by amarroyo         ###   ########.fr       */
+/*   Updated: 2025/01/24 13:22:23 by amarroyo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,7 +56,7 @@ int	main(int argc, char **argv)
     // }
 
     // Load the floor tile texture
-    mlx_texture_t *floor_texture = mlx_load_png("textures/floor_aff.png");
+    mlx_texture_t *floor_texture = mlx_load_png("textures/wall_squares.png");
     if (!floor_texture)
     {
         fprintf(stderr, "Failed to load floor texture\n");

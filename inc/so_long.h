@@ -6,7 +6,7 @@
 /*   By: amarroyo <amarroyo@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/20 09:08:54 by amarroyo          #+#    #+#             */
-/*   Updated: 2025/01/21 13:19:28 by amarroyo         ###   ########.fr       */
+/*   Updated: 2025/01/24 10:16:35 by amarroyo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@
 # define COLLECTIBLE 'C'
 
 // Tile size (px)
-# define TILE_SIZE 64
+# define TILE_SIZE 32
 
 // Structures
 /* Map structure*/

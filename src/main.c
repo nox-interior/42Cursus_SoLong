@@ -6,90 +6,159 @@
 /*   By: amarroyo <amarroyo@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/20 10:12:47 by amarroyo          #+#    #+#             */
-/*   Updated: 2025/01/24 13:22:23 by amarroyo         ###   ########.fr       */
+/*   Updated: 2025/01/27 15:10:41 by amarroyo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
 
-// Dinamically allocated window
-
-// Test floor
 int	main(int argc, char **argv)
 {
-	t_map		map;
+	t_game		game;
 	t_config	config;
 	t_error		error;
+	t_map		map;
 
 	ft_init_config(&config);
+	// Initialize the game structure
+	//ft_bzero(&game, sizeof(t_game));
+	ft_init_game(&game, &map);
+
 	if (argc != 2)
 	{
 		ft_printf("Usage: ./so_long <map_file.ber>\n");
 		return (EXIT_FAILURE);
 	}
-	error = ft_parse_map(argv[1], &map, &config);
+
+	// Allocate memory for map
+	game.map = malloc(sizeof(t_map));
+	if (!game.map)
+	{
+		ft_printf("Error: Failed to allocate memory for map.\n");
+		return (EXIT_FAILURE);
+	}
+
+	// Parse the map and validate it
+	error = ft_parse_map(argv[1], game.map, &config);
 	if (error != ERR_NONE)
 	{
 		ft_error_handling(error, argv[1]);
 		return (EXIT_FAILURE);
 	}
-	ft_printf("Map validation successful!\n");
-	// Calculate the dynamic window size based on map dimensions and TILE_SIZE
-    int window_width = map.width * TILE_SIZE;
-    int window_height = map.height * TILE_SIZE;
 
-    // Initialize the window with the calculated size
-    mlx_t *mlx = mlx_init(window_width, window_height, "so_long", false);
-    if (!mlx)
-    {
-        ft_printf("Failed to initialize MLX42\n");
-        ft_free_map_grid(map.grid, map.height);
-        return (EXIT_FAILURE);
-    }
+	// Calculate window size based on map dimensions
+	int window_width = game.map->width * TILE_SIZE;
+	int window_height = game.map->height * TILE_SIZE;
+
 	// Initialize MLX42
-    // mlx_t *mlx = mlx_init(800, 600, "so_long", true);
-    // if (!mlx)
-    // {
-    //     fprintf(stderr, "Failed to initialize MLX42\n");
-    //     ft_free_map_grid(map.grid, map.height); // Ensure memory cleanup
-    //     return EXIT_FAILURE;
-    // }
+	game.mlx = mlx_init(window_width, window_height, "so_long", false);
+	if (!game.mlx)
+	{
+		ft_printf("Failed to initialize MLX42\n");
+		ft_free_map_grid(game.map->grid, game.map->height);
+		return (EXIT_FAILURE);
+	}
 
-    // Load the floor tile texture
-    mlx_texture_t *floor_texture = mlx_load_png("textures/wall_squares.png");
-    if (!floor_texture)
-    {
-        fprintf(stderr, "Failed to load floor texture\n");
-        mlx_terminate(mlx);
-        ft_free_map_grid(map.grid, map.height); // Ensure memory cleanup
-        return EXIT_FAILURE;
-    }
+	// Load textures
+	ft_init_textures(&game);
 
-    // Convert the texture to an image
-    mlx_image_t *floor_image = mlx_texture_to_image(mlx, floor_texture);
-    if (!floor_image)
-    {
-        fprintf(stderr, "Failed to convert texture to image\n");
-        mlx_delete_texture(floor_texture);
-        mlx_terminate(mlx);
-        ft_free_map_grid(map.grid, map.height); // Ensure memory cleanup
-        return EXIT_FAILURE;
-    }
+	// Set default game parameters
+	game.moves = 0;
+	game.player_dir = 'D'; // Default starting direction
 
-    // Render the floor tiles
-    render_floor(mlx, floor_image, &map);
+	// Hook keypress events
+	mlx_key_hook(game.mlx, ft_handle_keypress, &game);
 
-    // Free the floor texture as it's no longer needed
-    mlx_delete_texture(floor_texture);
+	// Render the initial map state
+	ft_render_map(&game);
 
-    // Start the MLX42 loop
-    mlx_loop(mlx);
+	// Start the MLX42 event loop
+	mlx_loop(game.mlx);
 
-    // Clean up resources
-    mlx_terminate(mlx);
-	ft_free_map_grid(map.grid, map.height);
+	// Cleanup resources (this will only be reached if the loop exits)
+	ft_exit_game(&game);
+
 	return (EXIT_SUCCESS);
 }
+
+// Dinamically allocated window
+
+// // Test floor
+// int	main(int argc, char **argv)
+// {
+// 	t_map		map;
+// 	t_config	config;
+// 	t_error		error;
+
+// 	ft_init_config(&config);
+// 	if (argc != 2)
+// 	{
+// 		ft_printf("Usage: ./so_long <map_file.ber>\n");
+// 		return (EXIT_FAILURE);
+// 	}
+// 	error = ft_parse_map(argv[1], &map, &config);
+// 	if (error != ERR_NONE)
+// 	{
+// 		ft_error_handling(error, argv[1]);
+// 		return (EXIT_FAILURE);
+// 	}
+// 	ft_printf("Map validation successful!\n");
+// 	// Calculate the dynamic window size based on map dimensions and TILE_SIZE
+//     int window_width = map.width * TILE_SIZE;
+//     int window_height = map.height * TILE_SIZE;
+
+//     // Initialize the window with the calculated size
+//     mlx_t *mlx = mlx_init(window_width, window_height, "so_long", false);
+//     if (!mlx)
+//     {
+//         ft_printf("Failed to initialize MLX42\n");
+//         ft_free_map_grid(map.grid, map.height);
+//         return (EXIT_FAILURE);
+//     }
+// 	// Initialize MLX42
+//     // mlx_t *mlx = mlx_init(800, 600, "so_long", true);
+//     // if (!mlx)
+//     // {
+//     //     fprintf(stderr, "Failed to initialize MLX42\n");
+//     //     ft_free_map_grid(map.grid, map.height); // Ensure memory cleanup
+//     //     return EXIT_FAILURE;
+//     // }
+
+//     // Load the floor tile texture
+//     mlx_texture_t *floor_texture = mlx_load_png("textures/wall_squares.png");
+//     if (!floor_texture)
+//     {
+//         fprintf(stderr, "Failed to load floor texture\n");
+//         mlx_terminate(mlx);
+//         ft_free_map_grid(map.grid, map.height); // Ensure memory cleanup
+//         return EXIT_FAILURE;
+//     }
+
+//     // Convert the texture to an image
+//     mlx_image_t *floor_image = mlx_texture_to_image(mlx, floor_texture);
+//     if (!floor_image)
+//     {
+//         fprintf(stderr, "Failed to convert texture to image\n");
+//         mlx_delete_texture(floor_texture);
+//         mlx_terminate(mlx);
+//         ft_free_map_grid(map.grid, map.height); // Ensure memory cleanup
+//         return EXIT_FAILURE;
+//     }
+
+//     // Render the floor tiles
+//     render_floor(mlx, floor_image, &map);
+
+//     // Free the floor texture as it's no longer needed
+//     mlx_delete_texture(floor_texture);
+
+//     // Start the MLX42 loop
+//     mlx_loop(mlx);
+
+//     // Clean up resources
+//     mlx_terminate(mlx);
+// 	ft_free_map_grid(map.grid, map.height);
+// 	return (EXIT_SUCCESS);
+// }
 
 
 // Main para dibujar grid

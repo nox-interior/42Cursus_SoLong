@@ -6,7 +6,7 @@
 #    By: amarroyo <amarroyo@student.42madrid.com    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/01/09 10:42:37 by amarroyo          #+#    #+#              #
-#    Updated: 2025/01/24 16:50:51 by amarroyo         ###   ########.fr        #
+#    Updated: 2025/01/27 17:02:58 by amarroyo         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -42,6 +42,7 @@ SRC = 	$(SRC_DIR)/00_struct_init.c \
 		$(SRC_DIR)/04_a_map_validation.c \
 		$(SRC_DIR)/04_b_map_validation.c \
 		$(SRC_DIR)/05_path_validation.c \
+		$(SRC_DIR)/06_game.c \
 		$(SRC_DIR)/prueba_floor.c \
 		$(SRC_DIR)/main.c
 		

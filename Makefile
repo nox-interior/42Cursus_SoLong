@@ -6,7 +6,7 @@
 #    By: amarroyo <amarroyo@student.42madrid.com    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/01/09 10:42:37 by amarroyo          #+#    #+#              #
-#    Updated: 2025/01/28 11:21:46 by amarroyo         ###   ########.fr        #
+#    Updated: 2025/01/28 14:53:47 by amarroyo         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -43,6 +43,7 @@ SRC = 	$(SRC_DIR)/00_struct_init.c \
 		$(SRC_DIR)/04_b_map_validation.c \
 		$(SRC_DIR)/05_path_validation.c \
 		$(SRC_DIR)/06_player_movement.c \
+		$(SRC_DIR)/07_render_game.c \
 		$(SRC_DIR)/main.c
 		
 OBJ = $(SRC:$(SRC_DIR)/%.c=$(OBJ_DIR)/%.o)

@@ -6,7 +6,7 @@
 /*   By: amarroyo <amarroyo@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/20 09:08:54 by amarroyo          #+#    #+#             */
-/*   Updated: 2025/01/28 09:23:52 by amarroyo         ###   ########.fr       */
+/*   Updated: 2025/01/28 10:15:09 by amarroyo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,6 +47,19 @@ typedef struct s_map
 	uint32_t		exits;
 	uint32_t		players;
 }					t_map;
+
+/* Flood fill helper structures*/
+typedef struct s_reachable
+{
+	uint32_t	collectibles;
+	uint32_t	exits;
+}		t_reachable;
+
+typedef struct s_flood
+{
+	t_map		*map;
+	t_reachable	reachable;
+}				t_flood;
 
 /* Texture structure*/
 typedef struct s_textures
@@ -116,7 +129,7 @@ t_error				ft_validate_characters(t_map *map);
 t_error				ft_validate_screen_limit(t_map *map, t_config *config);
 t_error				ft_validate_map(t_map *map);
 char				**ft_duplicate_grid(char **grid, uint32_t height);
-void				ft_flood_fill(t_map *map, char **grid, int y, int x);
+void				ft_flood_fill(t_flood *flood, char **grid, int y, int x);
 t_error				ft_validate_path(t_map *map);
 void				ft_init_map(t_map *map);
 void				ft_init_config(t_config *config);

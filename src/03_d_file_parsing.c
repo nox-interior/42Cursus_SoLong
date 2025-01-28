@@ -6,7 +6,7 @@
 /*   By: amarroyo <amarroyo@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/20 13:25:09 by amarroyo          #+#    #+#             */
-/*   Updated: 2025/01/20 13:30:19 by amarroyo         ###   ########.fr       */
+/*   Updated: 2025/01/28 09:59:56 by amarroyo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,36 +72,3 @@ t_error	ft_read_map_lines(int fd, t_map *map, t_config *config)
 	free(store_buffer);
 	return (ft_finalize_map(map, line_count));
 }
-
-// t_error	ft_read_map_lines(int fd, t_map *map, t_config *config)
-// {
-// 	char	*line;
-// 	char	*store_buffer;
-// 	int		line_count;
-// 	t_error	error;
-
-// 	store_buffer = NULL;
-// 	line_count = 0;
-// 	line = get_next_line(fd, &store_buffer);
-// 	while (line)
-// 	{
-// 		if (line_count >= (int)config->max_map_height)
-// 		{
-// 			ft_cleanup_on_error(line, store_buffer, map, line_count);
-// 			return (ERR_SCREEN_LIMIT);
-// 		}
-// 		error = ft_process_line(line, map, line_count++);
-// 		if (error != ERR_NONE)
-// 		{
-// 			ft_cleanup_on_error(NULL, store_buffer, map, line_count);
-// 			return (error);
-// 		}
-// 		line = get_next_line(fd, &store_buffer);
-// 	}
-// 	free(store_buffer);
-// 	if (!line_count)
-// 		return (ERR_MAP_INVALID);
-// 	map->grid[line_count] = NULL;
-// 	map->height = line_count;
-// 	return (ERR_NONE);
-// }

@@ -6,7 +6,7 @@
 /*   By: amarroyo <amarroyo@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/20 09:08:54 by amarroyo          #+#    #+#             */
-/*   Updated: 2025/01/28 10:15:09 by amarroyo         ###   ########.fr       */
+/*   Updated: 2025/01/28 12:21:53 by amarroyo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -135,6 +135,12 @@ void				ft_init_map(t_map *map);
 void				ft_init_config(t_config *config);
 void				ft_init_textures(t_game *game);
 void				ft_init_game(t_game *game, t_map *map);
+void				ft_move_player(t_game *game, int dx, int dy, int key);
+void				ft_handle_keypress(mlx_key_data_t keydata, void *param);
+void				ft_render_tile(t_game *game, int x, int y);
+void				ft_render_player(t_game *game);
+void				ft_render_map(t_game *game);
+void				ft_exit_game(t_game *game);
 int					main(int argc, char **argv);
 
 #endif

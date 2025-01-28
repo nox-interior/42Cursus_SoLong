@@ -6,7 +6,7 @@
 /*   By: amarroyo <amarroyo@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/15 12:32:52 by amarroyo          #+#    #+#             */
-/*   Updated: 2025/01/27 14:40:10 by amarroyo         ###   ########.fr       */
+/*   Updated: 2025/01/28 11:42:57 by amarroyo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,4 +62,5 @@ void	ft_init_game(t_game *game, t_map *map)
 	game->mlx = NULL;
 	game->moves = 0;
 	game->player_dir = 'D';
+	ft_memset(&game->textures, 0, sizeof(game->textures));
 }

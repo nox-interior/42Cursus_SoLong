@@ -6,7 +6,7 @@
 /*   By: amarroyo <amarroyo@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/20 09:08:54 by amarroyo          #+#    #+#             */
-/*   Updated: 2025/01/27 14:38:26 by amarroyo         ###   ########.fr       */
+/*   Updated: 2025/01/28 09:23:52 by amarroyo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -118,20 +118,10 @@ t_error				ft_validate_map(t_map *map);
 char				**ft_duplicate_grid(char **grid, uint32_t height);
 void				ft_flood_fill(t_map *map, char **grid, int y, int x);
 t_error				ft_validate_path(t_map *map);
-void				ft_move_player(t_game *game, int dx, int dy);
-mlx_image_t			*ft_get_player_tile(t_game *game);
-mlx_image_t			*ft_select_tile_image(t_game *game, int x, int y);
-void				ft_free_textures(t_game *game);
-void				ft_handle_movement(int key, t_game *game);
-void				ft_handle_keypress(mlx_key_data_t keydata, void *param);
-void				ft_render_map(t_game *game);
 void				ft_init_map(t_map *map);
-void				ft_exit_game(t_game *game);
 void				ft_init_config(t_config *config);
 void				ft_init_textures(t_game *game);
 void				ft_init_game(t_game *game, t_map *map);
 int					main(int argc, char **argv);
-void				render_floor(mlx_t *mlx, mlx_image_t *floor_image,
-						t_map *map);
 
 #endif

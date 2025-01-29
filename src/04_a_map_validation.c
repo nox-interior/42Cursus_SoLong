@@ -6,7 +6,7 @@
 /*   By: amarroyo <amarroyo@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/15 11:47:41 by amarroyo          #+#    #+#             */
-/*   Updated: 2025/01/20 13:31:46 by amarroyo         ###   ########.fr       */
+/*   Updated: 2025/01/29 11:32:43 by amarroyo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,8 +26,8 @@ static t_error	ft_validate_boundaries(t_map *map)
 	row = 0;
 	while (row < map->width)
 	{
-		if (map->grid[0][row] != WALL || map->grid[map->height
-			- 1][row] != WALL)
+		if (map->grid[0][row] != WALL || map->grid[map->height - 1]
+			[row] != WALL)
 			return (ERR_MAP_INVALID);
 		row++;
 	}

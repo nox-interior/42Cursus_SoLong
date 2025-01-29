@@ -48,6 +48,7 @@ void	ft_init_game(t_game *game, t_map *map)
 	game->mlx = NULL;
 	game->moves = 0;
 	game->player_dir = 'D';
+	ft_memset(&game->textures, 0, sizeof(game->textures));
 }
 
 t_error	ft_check_extension(const char *str)
@@ -526,3 +527,238 @@ t_error	ft_validate_path(t_map *map)
 	ft_free_map_grid(temp_grid, map->height);
 	return (ERR_NONE);
 }
+
+static void	ft_check_tile(t_game *game, int new_x, int new_y)
+{
+	if (game->map->grid[new_y][new_x] == WALL)
+		return ;
+	if (game->map->grid[new_y][new_x] == COLLECTIBLE)
+	{
+		game->map->grid[new_y][new_x] = EMPTY;
+		game->map->collectibles--;
+	}
+	if (game->map->grid[new_y][new_x] == EXIT)
+	{
+		if (game->map->collectibles == 0)
+		{
+			ft_putstr_fd("You win!\n", 1);
+			ft_exit_game(game);
+		}
+		return ;
+	}
+}
+
+static void	ft_update_position(t_game *game, int new_x, int new_y)
+{
+	game->map->grid[game->map->player_y][game->map->player_x] = EMPTY;
+	game->map->grid[new_y][new_x] = PLAYER;
+	game->map->player_x = new_x;
+	game->map->player_y = new_y;
+}
+
+static void	ft_update_direction_and_moves(t_game *game, int key)
+{
+	if (key == MLX_KEY_W)
+		game->player_dir = 'U';
+	else if (key == MLX_KEY_S)
+		game->player_dir = 'D';
+	else if (key == MLX_KEY_A)
+		game->player_dir = 'L';
+	else if (key == MLX_KEY_D)
+		game->player_dir = 'R';
+	game->moves++;
+	ft_putnbr_fd(game->moves, 1);
+	ft_putchar_fd('\n', 1);
+}
+
+void	ft_move_player(t_game *game, int dx, int dy, int key)
+{
+	int	new_x;
+	int	new_y;
+
+	new_x = game->map->player_x + dx;
+	new_y = game->map->player_y + dy;
+	ft_check_tile(game, new_x, new_y);
+	if (game->map->grid[new_y][new_x] == WALL
+		|| game->map->grid[new_y][new_x] == EXIT)
+		return ;
+	ft_update_position(game, new_x, new_y);
+	ft_update_direction_and_moves(game, key);
+}
+
+void	ft_handle_keypress(mlx_key_data_t keydata, void *param)
+{
+	t_game	*game;
+
+	game = (t_game *)param;
+	if (keydata.action == MLX_PRESS)
+	{
+		if (keydata.key == MLX_KEY_ESCAPE)
+			ft_exit_game(game);
+		else if (keydata.key == MLX_KEY_W)
+			ft_move_player(game, 0, -1, MLX_KEY_W);
+		else if (keydata.key == MLX_KEY_S)
+			ft_move_player(game, 0, 1, MLX_KEY_S);
+		else if (keydata.key == MLX_KEY_A)
+			ft_move_player(game, -1, 0, MLX_KEY_A);
+		else if (keydata.key == MLX_KEY_D)
+			ft_move_player(game, 1, 0, MLX_KEY_D);
+		ft_render_map(game);
+		ft_render_player(game);
+	}
+}
+
+void	ft_render_tile(t_game *game, int x, int y)
+{
+	char			tile;
+	mlx_texture_t	*texture;
+	mlx_image_t		*img;
+
+	tile = game->map->grid[y][x];
+	texture = NULL;
+	if (tile == WALL)
+		texture = game->textures.wall;
+	else if (tile == EMPTY)
+		texture = game->textures.floor;
+	else if (tile == COLLECTIBLE)
+		texture = game->textures.collectible;
+	else if (tile == EXIT)
+	{
+		if (game->map->collectibles > 0)
+			texture = game->textures.exit_closed;
+		else
+			texture = game->textures.exit_open;
+	}
+	if (texture)
+	{
+		img = mlx_texture_to_image(game->mlx, texture);
+		if (img)
+			mlx_image_to_window(game->mlx, img, x * TILE_SIZE, y * TILE_SIZE);
+	}
+}
+
+void	ft_render_player(t_game *game)
+{
+	mlx_texture_t	*texture;
+	mlx_image_t		*img;
+
+	texture = NULL;
+	if (game->player_dir == 'U')
+		texture = game->textures.player_up;
+	else if (game->player_dir == 'D')
+		texture = game->textures.player_down;
+	else if (game->player_dir == 'L')
+		texture = game->textures.player_left;
+	else if (game->player_dir == 'R')
+		texture = game->textures.player_right;
+	if (texture)
+	{
+		img = mlx_texture_to_image(game->mlx, texture);
+		if (img)
+			mlx_image_to_window(game->mlx, img,
+				game->map->player_x * TILE_SIZE,
+				game->map->player_y * TILE_SIZE);
+	}
+}
+
+void	ft_render_map(t_game *game)
+{
+	uint32_t	x;
+	uint32_t	y;
+
+	y = 0;
+	while (y < game->map->height)
+	{
+		x = 0;
+		while (x < game->map->width)
+		{
+			ft_render_tile(game, x, y);
+			x++;
+		}
+		y++;
+	}
+}
+
+void	ft_exit_game(t_game *game)
+{
+	if (game->textures.wall)
+		mlx_delete_texture(game->textures.wall);
+	if (game->textures.floor)
+		mlx_delete_texture(game->textures.floor);
+	if (game->textures.collectible)
+		mlx_delete_texture(game->textures.collectible);
+	if (game->textures.exit_closed)
+		mlx_delete_texture(game->textures.exit_closed);
+	if (game->textures.exit_open)
+		mlx_delete_texture(game->textures.exit_open);
+	if (game->textures.player_up)
+		mlx_delete_texture(game->textures.player_up);
+	if (game->textures.player_down)
+		mlx_delete_texture(game->textures.player_down);
+	if (game->textures.player_left)
+		mlx_delete_texture(game->textures.player_left);
+	if (game->textures.player_right)
+		mlx_delete_texture(game->textures.player_right);
+	ft_free_map_grid(game->map->grid, game->map->height);
+	if (game->mlx)
+		mlx_terminate(game->mlx);
+	free(game->map);
+	ft_putstr_fd("Exiting game.\n", 1);
+	exit(EXIT_SUCCESS);
+}
+
+int main(int argc, char **argv)
+{
+    t_map map;
+    t_game game;
+    t_config config;
+    t_error error;
+
+    if (argc != 2)
+    {
+        ft_putstr_fd("Usage: ./so_long <map_file.ber>\n", 1);
+        return (EXIT_FAILURE);
+    }
+    ft_init_config(&config);
+    ft_init_game(&game, &map);
+    game.map = malloc(sizeof(t_map));
+    if (!game.map)
+    {
+        ft_printf("Error: Failed to allocate memory for map.\n");
+        return (EXIT_FAILURE);
+    }
+    error = ft_parse_map(argv[1], game.map, &config);
+    if (error != ERR_NONE)
+    {
+        ft_error_handling(error, argv[1]);
+        free(game.map);
+        return (EXIT_FAILURE);
+    }
+    int window_width = game.map->width * TILE_SIZE;
+    int window_height = game.map->height * TILE_SIZE;
+    game.mlx = mlx_init(window_width, window_height, "so_long", false);
+    if (!game.mlx)
+    {
+        ft_printf("Failed to initialize MLX42\n");
+        ft_free_map_grid(game.map->grid, game.map->height);
+        free(game.map);
+        return (EXIT_FAILURE);
+    }
+
+    // Load textures
+    ft_init_textures(&game);
+
+    // Render the initial map and player
+    ft_render_map(&game);
+    ft_render_player(&game);
+
+    // Set up keypress handling and start the MLX42 loop
+    mlx_key_hook(game.mlx, ft_handle_keypress, &game);
+    mlx_loop(game.mlx);
+	mlx_terminate(game.mlx);
+
+    // Clean up resources after exiting
+    ft_exit_game(&game);
+    return (EXIT_SUCCESS);
+}
+

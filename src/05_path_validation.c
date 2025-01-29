@@ -6,7 +6,7 @@
 /*   By: amarroyo <amarroyo@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/15 16:14:20 by amarroyo          #+#    #+#             */
-/*   Updated: 2025/01/29 11:19:39 by amarroyo         ###   ########.fr       */
+/*   Updated: 2025/01/29 13:51:25 by amarroyo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,37 +52,20 @@ void	ft_flood_fill(t_flood *flood, char **grid, int y, int x)
 	ft_flood_fill(flood, grid, y, x - 1);
 }
 
-static t_error	ft_check_unreachable_exits(char **temp_grid, t_map *map)
-{
-	uint32_t	row;
-	uint32_t	col;
-
-	row = 0;
-	while (row < map->height)
-	{
-		col = 0;
-		while (col < map->width)
-		{
-			if (temp_grid[row][col] == EXIT)
-				return (ERR_PATH_INVALID);
-			col++;
-		}
-		row++;
-	}
-	return (ERR_NONE);
-}
-
 t_error	ft_validate_path(t_map *map)
 {
 	char	**temp_grid;
-	t_error	error;
+	t_flood	flood;
 
 	temp_grid = ft_duplicate_grid(map->grid, map->height);
 	if (!temp_grid)
 		return (ERR_SYSTEM);
-	ft_flood_fill(map, temp_grid, map->player_y, map->player_x);
-	error = ft_check_unreachable_exits(temp_grid, map);
-	if (error != ERR_NONE || map->collectibles > 0)
+	flood.map = map;
+	flood.reachable.collectibles = 0;
+	flood.reachable.exits = 0;
+	ft_flood_fill(&flood, temp_grid, map->player_y, map->player_x);
+	if (flood.reachable.collectibles != map->collectibles
+		|| flood.reachable.exits != map->exits)
 	{
 		ft_free_map_grid(temp_grid, map->height);
 		return (ERR_PATH_INVALID);
@@ -90,4 +73,3 @@ t_error	ft_validate_path(t_map *map)
 	ft_free_map_grid(temp_grid, map->height);
 	return (ERR_NONE);
 }
-

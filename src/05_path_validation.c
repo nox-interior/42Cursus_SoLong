@@ -6,7 +6,7 @@
 /*   By: amarroyo <amarroyo@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/15 16:14:20 by amarroyo          #+#    #+#             */
-/*   Updated: 2025/01/29 14:03:46 by amarroyo         ###   ########.fr       */
+/*   Updated: 2025/01/29 14:04:41 by amarroyo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,4 +73,3 @@ t_error	ft_validate_path(t_map *map)
 	ft_free_map_grid(temp_grid, map->height);
 	return (ERR_NONE);
 }
-

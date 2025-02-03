@@ -6,119 +6,73 @@
 /*   By: amarroyo <amarroyo@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/28 10:13:08 by amarroyo          #+#    #+#             */
-/*   Updated: 2025/01/28 16:04:21 by amarroyo         ###   ########.fr       */
+/*   Updated: 2025/02/03 10:37:23 by amarroyo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
 
-int main(int argc, char **argv)
+static int	initialize_game(t_game *game, t_map *map, t_config *config,
+		char *map_path)
 {
-    t_map map;
-    t_game game;
-    t_config config;
-    t_error error;
+	t_error	error;
 
-    if (argc != 2)
-    {
-        ft_putstr_fd("Usage: ./so_long <map_file.ber>\n", 1);
-        return (EXIT_FAILURE);
-    }
-    ft_init_config(&config);
-    ft_init_game(&game, &map);
-    game.map = malloc(sizeof(t_map));
-    if (!game.map)
-    {
-        ft_printf("Error: Failed to allocate memory for map.\n");
-        return (EXIT_FAILURE);
-    }
-    error = ft_parse_map(argv[1], game.map, &config);
-    if (error != ERR_NONE)
-    {
-        ft_error_handling(error, argv[1]);
-        free(game.map);
-        return (EXIT_FAILURE);
-    }
-    int window_width = game.map->width * TILE_SIZE;
-    int window_height = game.map->height * TILE_SIZE;
-    game.mlx = mlx_init(window_width, window_height, "so_long", false);
-    if (!game.mlx)
-    {
-        ft_printf("Failed to initialize MLX42\n");
-        ft_free_map_grid(game.map->grid, game.map->height);
-        free(game.map);
-        return (EXIT_FAILURE);
-    }
-
-    // Load textures
-    ft_init_textures(&game);
-
-    // Render the initial map and player
-    ft_render_map(&game);
-    ft_render_player(&game);
-
-    // Set up keypress handling and start the MLX42 loop
-    mlx_key_hook(game.mlx, ft_handle_keypress, &game);
-    mlx_loop(game.mlx);
-	mlx_terminate(game.mlx);
-
-    // Clean up resources after exiting
-    ft_exit_game(&game);
-    return (EXIT_SUCCESS);
+	ft_init_config(config);
+	ft_init_game(game, map);
+	game->map = malloc(sizeof(t_map));
+	if (!game->map)
+		return (EXIT_FAILURE);
+	error = ft_parse_map(map_path, game->map, config);
+	if (error != ERR_NONE)
+	{
+		ft_error_handling(error, map_path);
+		free(game->map);
+		return (EXIT_FAILURE);
+	}
+	return (EXIT_SUCCESS);
 }
-// int	main(int argc, char **argv)
-// {
-// 	t_map	map;
-// 	t_game	game;
-// 	t_config config;
-// 	t_error	error;
 
-// 	if (argc != 2)
-// 	{
-// 		ft_putstr_fd("Usage: ./so_long <map_file.ber>\n", 1);
-// 		return (EXIT_FAILURE);
-// 	}
-// 	ft_init_config(&config);
-// 	ft_init_game(&game, &map);
-// 	game.map = malloc(sizeof(t_map));
-// 	if (!game.map)
-// 	{
-// 		ft_printf("Error: Failed to allocate memory for map.\n");
-// 		return (EXIT_FAILURE);
-// 	}
-// 	error = ft_parse_map(argv[1], game.map, &config);
-// 	if (error != ERR_NONE)
-// 	{
-// 		ft_error_handling(error, argv[1]);
-// 		free(game.map); //delete?
-// 		return (EXIT_FAILURE);
-// 	}
-// 	int window_width = game.map->width * TILE_SIZE;
-// 	int window_height = game.map->height * TILE_SIZE;
-// 	game.mlx = mlx_init(window_width, window_height, "so_long", false);
-// 	if (!game.mlx)
-// 	{
-// 		ft_printf("Failed to initialize MLX42\n");
-// 		ft_free_map_grid(game.map->grid, game.map->height);
-// 		free(game.map); //delete?
-// 		return (EXIT_FAILURE);
-// 	}
+static int	initialize_mlx(t_game *game)
+{
+	int	window_width;
+	int	window_height;
 
-// 	// Load textures
-// 	ft_init_textures(&game);
+	window_width = game->map->width * TILE_SIZE;
+	window_height = game->map->height * TILE_SIZE;
+	game->mlx = mlx_init(window_width, window_height, "so_long", false);
+	if (!game->mlx)
+	{
+		ft_free_map_grid(game->map->grid, game->map->height);
+		free(game->map);
+		return (EXIT_FAILURE);
+	}
+	return (EXIT_SUCCESS);
+}
 
-// 	// Render the initial map and player
-// 	ft_render_map(&game);
-// 	ft_render_player(&game);
+static void	start_game_loop(t_game *game)
+{
+	ft_init_textures(game);
+	ft_render_map(game);
+	ft_render_player(game);
+	mlx_key_hook(game->mlx, ft_handle_keypress, game);
+	mlx_loop(game->mlx);
+}
 
-// 	// Set up keypress handling and start the MLX42 loop
-// 	mlx_key_hook(game.mlx, ft_handle_keypress, &game);
-// 	mlx_loop(game.mlx);
+int	main(int argc, char **argv)
+{
+	t_game		game;
+	t_map		map;
+	t_config	config;
 
-// 	// Clean up resources after exiting
-// 	ft_free_map_grid(game.map->grid, game.map->height);
-// 	ft_exit_game(&game);
-// 	mlx_terminate(game.mlx); //delete?
-// 	free(game.map); //delete?
-// 	return (EXIT_SUCCESS);
-// }
+	if (argc != 2)
+		return (ft_putstr_fd("Usage: ./so_long <map_file.ber>\n", 1),
+			EXIT_FAILURE);
+	if (initialize_game(&game, &map, &config, argv[1]) == EXIT_FAILURE)
+		return (EXIT_FAILURE);
+	if (initialize_mlx(&game) == EXIT_FAILURE)
+		return (EXIT_FAILURE);
+	start_game_loop(&game);
+	mlx_terminate(game.mlx);
+	ft_exit_game(&game);
+	return (EXIT_SUCCESS);
+}

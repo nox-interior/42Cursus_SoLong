@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   02_error_handling.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: amarroyo <amarroyo@student.42madrid.com    +#+  +:+       +#+        */
+/*   By: amarroyo <amarroyo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/09 16:27:09 by amarroyo          #+#    #+#             */
-/*   Updated: 2025/01/27 09:34:24 by amarroyo         ###   ########.fr       */
+/*   Updated: 2025/03/09 17:03:06 by amarroyo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,6 +52,10 @@ void	ft_map_error_handling(t_error error_code)
 		ft_printf("The map does not have a valid path.\n");
 	else if (error_code == ERR_SCREEN_LIMIT)
 		ft_printf("The map is too large to be playable.\n");
+	else if (error_code == ERR_TEXTURE_LOAD)
+		ft_printf("Failed to load textures\n");
+	else if (error_code == ERR_IMG_CREATION)
+		ft_printf("Failed to create images\n");
 	else if (error_code != ERR_SYSTEM)
 		ft_printf("An unknown error occurred.\n");
 }

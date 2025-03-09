@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   so_long.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: amarroyo <amarroyo@student.42madrid.com    +#+  +:+       +#+        */
+/*   By: amarroyo <amarroyo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/20 09:08:54 by amarroyo          #+#    #+#             */
-/*   Updated: 2025/02/03 11:00:01 by amarroyo         ###   ########.fr       */
+/*   Updated: 2025/03/09 17:16:18 by amarroyo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,6 +75,19 @@ typedef struct s_textures
 	mlx_texture_t	*player_right;
 }					t_textures;
 
+typedef struct s_images
+{
+	mlx_image_t		*wall;
+	mlx_image_t		*floor;
+	mlx_image_t		*collectible;
+	mlx_image_t		*exit_closed;
+	mlx_image_t		*exit_open;
+	mlx_image_t		*player_up;
+	mlx_image_t		*player_down;
+	mlx_image_t		*player_left;
+	mlx_image_t		*player_right;
+}					t_images;
+
 /* Game structure*/
 typedef struct s_game
 {
@@ -82,6 +95,7 @@ typedef struct s_game
 	mlx_t			*mlx;
 	uint32_t		moves;
 	t_textures		textures;
+	t_images		images;
 	char			player_dir;
 }					t_game;
 
@@ -108,6 +122,8 @@ typedef enum e_error
 	ERR_READ_FILE,
 	ERR_PATH_INVALID,
 	ERR_SCREEN_LIMIT,
+	ERR_TEXTURE_LOAD,
+	ERR_IMG_CREATION,
 	ERR_SYSTEM
 }					t_error;
 
@@ -133,6 +149,8 @@ void				ft_flood_fill(t_flood *flood, char **grid, int y, int x);
 t_error				ft_validate_path(t_map *map);
 void				ft_init_map(t_map *map);
 void				ft_init_config(t_config *config);
+t_error				ft_verify_textures(t_textures *textures);
+t_error				ft_verify_images(t_game *game);
 void				ft_init_textures(t_game *game);
 void				ft_init_game(t_game *game, t_map *map);
 void				ft_move_player(t_game *game, int dx, int dy, int key);

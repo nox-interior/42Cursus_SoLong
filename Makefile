@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: amarroyo <amarroyo@student.42madrid.com    +#+  +:+       +#+         #
+#    By: amarroyo <amarroyo@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/01/09 10:42:37 by amarroyo          #+#    #+#              #
-#    Updated: 2025/02/03 12:01:42 by amarroyo         ###   ########.fr        #
+#    Updated: 2025/03/09 17:36:46 by amarroyo         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -32,7 +32,8 @@ MLX_FLAGS = -L$(MLX_BUILD_DIR) -lmlx42 -I$(MLX_DIR)/include -ldl -lglfw \
 RM = rm -rf
 
 # Source and Object Files
-SRC = 	$(SRC_DIR)/00_struct_init.c \
+SRC = 	$(SRC_DIR)/00_a_struct_init.c \
+		$(SRC_DIR)/00_b_img_txtrs_init.c \
 		$(SRC_DIR)/01_extension_validation.c \
 		$(SRC_DIR)/02_error_handling.c \
 		$(SRC_DIR)/03_a_file_parsing.c \
@@ -44,6 +45,7 @@ SRC = 	$(SRC_DIR)/00_struct_init.c \
 		$(SRC_DIR)/05_path_validation.c \
 		$(SRC_DIR)/06_player_movement.c \
 		$(SRC_DIR)/07_render_game.c \
+		$(SRC_DIR)/08_end_game.c \
 		$(SRC_DIR)/main.c
 		
 OBJ = $(SRC:$(SRC_DIR)/%.c=$(OBJ_DIR)/%.o)

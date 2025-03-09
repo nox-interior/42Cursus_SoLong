@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: amarroyo <amarroyo@student.42madrid.com    +#+  +:+       +#+        */
+/*   By: amarroyo <amarroyo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/28 10:13:08 by amarroyo          #+#    #+#             */
-/*   Updated: 2025/02/03 10:37:23 by amarroyo         ###   ########.fr       */
+/*   Updated: 2025/03/09 16:29:28 by amarroyo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
 
-static int	initialize_game(t_game *game, t_map *map, t_config *config,
+static int	ft_initialize_game(t_game *game, t_map *map, t_config *config,
 		char *map_path)
 {
 	t_error	error;
@@ -32,7 +32,7 @@ static int	initialize_game(t_game *game, t_map *map, t_config *config,
 	return (EXIT_SUCCESS);
 }
 
-static int	initialize_mlx(t_game *game)
+static int	ft_initialize_mlx(t_game *game)
 {
 	int	window_width;
 	int	window_height;
@@ -49,7 +49,7 @@ static int	initialize_mlx(t_game *game)
 	return (EXIT_SUCCESS);
 }
 
-static void	start_game_loop(t_game *game)
+static void	ft_start_game_loop(t_game *game)
 {
 	ft_init_textures(game);
 	ft_render_map(game);
@@ -67,11 +67,11 @@ int	main(int argc, char **argv)
 	if (argc != 2)
 		return (ft_putstr_fd("Usage: ./so_long <map_file.ber>\n", 1),
 			EXIT_FAILURE);
-	if (initialize_game(&game, &map, &config, argv[1]) == EXIT_FAILURE)
+	if (ft_initialize_game(&game, &map, &config, argv[1]) == EXIT_FAILURE)
 		return (EXIT_FAILURE);
-	if (initialize_mlx(&game) == EXIT_FAILURE)
+	if (ft_initialize_mlx(&game) == EXIT_FAILURE)
 		return (EXIT_FAILURE);
-	start_game_loop(&game);
+	ft_start_game_loop(&game);
 	mlx_terminate(game.mlx);
 	ft_exit_game(&game);
 	return (EXIT_SUCCESS);

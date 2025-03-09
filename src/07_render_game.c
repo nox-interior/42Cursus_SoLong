@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   07_render_game.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: amarroyo <amarroyo@student.42madrid.com    +#+  +:+       +#+        */
+/*   By: amarroyo <amarroyo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/28 14:52:24 by amarroyo          #+#    #+#             */
-/*   Updated: 2025/01/28 15:09:06 by amarroyo         ###   ########.fr       */
+/*   Updated: 2025/03/09 17:38:01 by amarroyo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,55 +14,44 @@
 
 void	ft_render_tile(t_game *game, int x, int y)
 {
-	char			tile;
-	mlx_texture_t	*texture;
-	mlx_image_t		*img;
+	char		tile;
+	mlx_image_t	*img;
 
 	tile = game->map->grid[y][x];
-	texture = NULL;
+	img = NULL;
 	if (tile == WALL)
-		texture = game->textures.wall;
+		img = game->images.wall;
 	else if (tile == EMPTY)
-		texture = game->textures.floor;
+		img = game->images.floor;
 	else if (tile == COLLECTIBLE)
-		texture = game->textures.collectible;
+		img = game->images.collectible;
 	else if (tile == EXIT)
 	{
 		if (game->map->collectibles > 0)
-			texture = game->textures.exit_closed;
+			img = game->images.exit_closed;
 		else
-			texture = game->textures.exit_open;
+			img = game->images.exit_open;
 	}
-	if (texture)
-	{
-		img = mlx_texture_to_image(game->mlx, texture);
-		if (img)
-			mlx_image_to_window(game->mlx, img, x * TILE_SIZE, y * TILE_SIZE);
-	}
+	if (img)
+		mlx_image_to_window(game->mlx, img, x * TILE_SIZE, y * TILE_SIZE);
 }
 
 void	ft_render_player(t_game *game)
 {
-	mlx_texture_t	*texture;
-	mlx_image_t		*img;
+	mlx_image_t	*img;
 
-	texture = NULL;
+	img = NULL;
 	if (game->player_dir == 'U')
-		texture = game->textures.player_up;
+		img = game->images.player_up;
 	else if (game->player_dir == 'D')
-		texture = game->textures.player_down;
+		img = game->images.player_down;
 	else if (game->player_dir == 'L')
-		texture = game->textures.player_left;
+		img = game->images.player_left;
 	else if (game->player_dir == 'R')
-		texture = game->textures.player_right;
-	if (texture)
-	{
-		img = mlx_texture_to_image(game->mlx, texture);
-		if (img)
-			mlx_image_to_window(game->mlx, img,
-				game->map->player_x * TILE_SIZE,
-				game->map->player_y * TILE_SIZE);
-	}
+		img = game->images.player_right;
+	if (img)
+		mlx_image_to_window(game->mlx, img, game->map->player_x * TILE_SIZE,
+			game->map->player_y * TILE_SIZE);
 }
 
 void	ft_render_map(t_game *game)
@@ -81,32 +70,4 @@ void	ft_render_map(t_game *game)
 		}
 		y++;
 	}
-}
-
-void	ft_exit_game(t_game *game)
-{
-	if (game->textures.wall)
-		mlx_delete_texture(game->textures.wall);
-	if (game->textures.floor)
-		mlx_delete_texture(game->textures.floor);
-	if (game->textures.collectible)
-		mlx_delete_texture(game->textures.collectible);
-	if (game->textures.exit_closed)
-		mlx_delete_texture(game->textures.exit_closed);
-	if (game->textures.exit_open)
-		mlx_delete_texture(game->textures.exit_open);
-	if (game->textures.player_up)
-		mlx_delete_texture(game->textures.player_up);
-	if (game->textures.player_down)
-		mlx_delete_texture(game->textures.player_down);
-	if (game->textures.player_left)
-		mlx_delete_texture(game->textures.player_left);
-	if (game->textures.player_right)
-		mlx_delete_texture(game->textures.player_right);
-	ft_free_map_grid(game->map->grid, game->map->height);
-	if (game->mlx)
-		mlx_terminate(game->mlx);
-	free(game->map);
-	ft_putstr_fd("Exiting game.\n", 1);
-	exit(EXIT_SUCCESS);
 }

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   06_player_movement.c                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: amarroyo <amarroyo@student.42madrid.com    +#+  +:+       +#+        */
+/*   By: amarroyo <amarroyo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/28 10:37:04 by amarroyo          #+#    #+#             */
-/*   Updated: 2025/01/28 15:32:54 by amarroyo         ###   ########.fr       */
+/*   Updated: 2025/03/09 17:33:35 by amarroyo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,6 +68,9 @@ void	ft_move_player(t_game *game, int dx, int dy, int key)
 		return ;
 	ft_update_position(game, new_x, new_y);
 	ft_update_direction_and_moves(game, key);
+	ft_render_tile(game, game->map->player_x, game->map->player_y);
+	ft_render_tile(game, new_x, new_y);
+	ft_render_player(game);
 }
 
 void	ft_handle_keypress(mlx_key_data_t keydata, void *param)

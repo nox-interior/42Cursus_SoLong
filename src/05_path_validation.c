@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   05_path_validation.c                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: amarroyo <amarroyo@student.42madrid.com    +#+  +:+       +#+        */
+/*   By: amarroyo <amarroyo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/15 16:14:20 by amarroyo          #+#    #+#             */
-/*   Updated: 2025/01/29 14:04:41 by amarroyo         ###   ########.fr       */
+/*   Updated: 2025/03/12 12:59:10 by amarroyo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 

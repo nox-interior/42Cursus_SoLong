@@ -6,7 +6,7 @@
 /*   By: amarroyo <amarroyo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/28 10:37:04 by amarroyo          #+#    #+#             */
-/*   Updated: 2025/03/09 17:33:35 by amarroyo         ###   ########.fr       */
+/*   Updated: 2025/03/12 13:21:10 by amarroyo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,9 @@ static void	ft_check_tile(t_game *game, int new_x, int new_y)
 	{
 		if (game->map->collectibles == 0)
 		{
+			game->moves++;
+			ft_putnbr_fd(game->moves, 1);
+			ft_putchar_fd('\n', 1);
 			ft_putstr_fd("You win!\n", 1);
 			ft_exit_game(game);
 		}
@@ -91,6 +94,5 @@ void	ft_handle_keypress(mlx_key_data_t keydata, void *param)
 		else if (keydata.key == MLX_KEY_D)
 			ft_move_player(game, 1, 0, MLX_KEY_D);
 		ft_render_map(game);
-		ft_render_player(game);
 	}
 }

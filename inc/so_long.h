@@ -6,7 +6,7 @@
 /*   By: amarroyo <amarroyo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/20 09:08:54 by amarroyo          #+#    #+#             */
-/*   Updated: 2025/03/13 13:01:21 by amarroyo         ###   ########.fr       */
+/*   Updated: 2025/03/13 13:06:37 by amarroyo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -87,7 +87,6 @@ typedef struct s_game
 	char			player_dir;
 }					t_game;
 
-
 /* Flood fill helper structures*/
 typedef struct s_reachable
 {
@@ -100,7 +99,6 @@ typedef struct s_flood
 	t_map			*map;
 	t_reachable		reachable;
 }					t_flood;
-
 
 /*Configuration structure for dynamic limits*/
 typedef struct s_winconfig

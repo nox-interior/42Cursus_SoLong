@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   03_d_file_parsing.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: amarroyo <amarroyo@student.42madrid.com    +#+  +:+       +#+        */
+/*   By: amarroyo <amarroyo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/20 13:25:09 by amarroyo          #+#    #+#             */
-/*   Updated: 2025/01/28 09:59:56 by amarroyo         ###   ########.fr       */
+/*   Updated: 2025/03/13 12:58:00 by amarroyo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,7 +45,7 @@ static t_error	ft_finalize_map(t_map *map, int line_count)
 	return (ERR_NONE);
 }
 
-t_error	ft_read_map_lines(int fd, t_map *map, t_config *config)
+t_error	ft_read_map_lines(int fd, t_map *map, t_winconfig *config)
 {
 	char	*line;
 	char	*store_buffer;

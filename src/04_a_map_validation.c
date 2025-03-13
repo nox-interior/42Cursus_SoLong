@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   04_a_map_validation.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: amarroyo <amarroyo@student.42madrid.com    +#+  +:+       +#+        */
+/*   By: amarroyo <amarroyo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/15 11:47:41 by amarroyo          #+#    #+#             */
-/*   Updated: 2025/01/29 11:32:43 by amarroyo         ###   ########.fr       */
+/*   Updated: 2025/03/13 12:58:22 by amarroyo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,7 @@ static t_error	ft_validate_boundaries(t_map *map)
 	return (ERR_NONE);
 }
 
-t_error	ft_validate_screen_limit(t_map *map, t_config *config)
+t_error	ft_validate_screen_limit(t_map *map, t_winconfig *config)
 {
 	if (map->width > config->max_map_width
 		|| map->height > config->max_map_height)

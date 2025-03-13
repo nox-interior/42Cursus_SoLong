@@ -6,7 +6,7 @@
 /*   By: amarroyo <amarroyo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/15 12:32:52 by amarroyo          #+#    #+#             */
-/*   Updated: 2025/03/09 16:50:52 by amarroyo         ###   ########.fr       */
+/*   Updated: 2025/03/13 12:56:39 by amarroyo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ void	ft_init_map(t_map *map)
 	map->players = 0;
 }
 
-void	ft_init_config(t_config *config)
+void	ft_init_winconfig(t_winconfig *config)
 {
 	int32_t	monitor_width;
 	int32_t	monitor_height;

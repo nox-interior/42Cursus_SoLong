@@ -3,17 +3,17 @@
 /*                                                        :::      ::::::::   */
 /*   03_b_file_parsing.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: amarroyo <amarroyo@student.42madrid.com    +#+  +:+       +#+        */
+/*   By: amarroyo <amarroyo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/14 11:50:54 by amarroyo          #+#    #+#             */
-/*   Updated: 2025/01/20 12:09:40 by amarroyo         ###   ########.fr       */
+/*   Updated: 2025/03/13 12:57:31 by amarroyo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
 
 static t_error	ft_open_and_allocate(const char *file_path, t_map *map,
-	t_config *config, int *fd)
+	t_winconfig *config, int *fd)
 {
 	*fd = ft_open_map_file(file_path);
 	if (*fd == -1)
@@ -38,7 +38,7 @@ static t_error	ft_handle_map_error(t_error error, t_map *map, int fd)
 	return (error);
 }
 
-t_error	ft_parse_map(const char *file_path, t_map *map, t_config *config)
+t_error	ft_parse_map(const char *file_path, t_map *map, t_winconfig *config)
 {
 	int		fd;
 	t_error	error;

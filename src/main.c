@@ -6,18 +6,18 @@
 /*   By: amarroyo <amarroyo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/28 10:13:08 by amarroyo          #+#    #+#             */
-/*   Updated: 2025/03/09 16:29:28 by amarroyo         ###   ########.fr       */
+/*   Updated: 2025/03/13 13:01:53 by amarroyo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
 
-static int	ft_initialize_game(t_game *game, t_map *map, t_config *config,
+static int	ft_initialize_game(t_game *game, t_map *map, t_winconfig *config,
 		char *map_path)
 {
 	t_error	error;
 
-	ft_init_config(config);
+	ft_init_winconfig(config);
 	ft_init_game(game, map);
 	game->map = malloc(sizeof(t_map));
 	if (!game->map)
@@ -62,7 +62,7 @@ int	main(int argc, char **argv)
 {
 	t_game		game;
 	t_map		map;
-	t_config	config;
+	t_winconfig	config;
 
 	if (argc != 2)
 		return (ft_putstr_fd("Usage: ./so_long <map_file.ber>\n", 1),

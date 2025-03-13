@@ -6,7 +6,7 @@
 /*   By: amarroyo <amarroyo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/20 09:08:54 by amarroyo          #+#    #+#             */
-/*   Updated: 2025/03/13 13:06:37 by amarroyo         ###   ########.fr       */
+/*   Updated: 2025/03/13 13:11:28 by amarroyo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -138,18 +138,20 @@ int					ft_open_map_file(const char *file_path);
 void				ft_initialize_grid(char **grid, int size);
 char				**ft_allocate_grid(int size);
 t_error				ft_parse_map(const char *file_path, t_map *map,
-						t_winconfig *config);
+						t_winconfig *winconfig);
 t_error				ft_process_line(char *line, t_map *map, int line_count);
-t_error				ft_read_map_lines(int fd, t_map *map, t_winconfig *config);
+t_error				ft_read_map_lines(int fd, t_map *map,
+						t_winconfig *winconfig);
 void				ft_free_map_grid(char **grid, int line_count);
 t_error				ft_validate_characters(t_map *map);
-t_error				ft_validate_screen_limit(t_map *map, t_winconfig *config);
+t_error				ft_validate_screen_limit(t_map *map,
+						t_winconfig *winconfig);
 t_error				ft_validate_map(t_map *map);
 char				**ft_duplicate_grid(char **grid, uint32_t height);
 void				ft_flood_fill(t_flood *flood, char **grid, int y, int x);
 t_error				ft_validate_path(t_map *map);
 void				ft_init_map(t_map *map);
-void				ft_init_winconfig(t_winconfig *config);
+void				ft_init_winconfig(t_winconfig *winconfig);
 t_error				ft_verify_textures(t_textures *textures);
 t_error				ft_verify_images(t_game *game);
 void				ft_init_textures(t_game *game);

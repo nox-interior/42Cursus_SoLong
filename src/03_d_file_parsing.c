@@ -6,7 +6,7 @@
 /*   By: amarroyo <amarroyo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/20 13:25:09 by amarroyo          #+#    #+#             */
-/*   Updated: 2025/03/13 12:58:00 by amarroyo         ###   ########.fr       */
+/*   Updated: 2025/03/13 13:11:28 by amarroyo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,7 +45,7 @@ static t_error	ft_finalize_map(t_map *map, int line_count)
 	return (ERR_NONE);
 }
 
-t_error	ft_read_map_lines(int fd, t_map *map, t_winconfig *config)
+t_error	ft_read_map_lines(int fd, t_map *map, t_winconfig *winconfig)
 {
 	char	*line;
 	char	*store_buffer;
@@ -58,7 +58,7 @@ t_error	ft_read_map_lines(int fd, t_map *map, t_winconfig *config)
 		line = get_next_line(fd, &store_buffer);
 		if (!line)
 			break ;
-		if (line_count >= (int)config->max_map_height)
+		if (line_count >= (int)winconfig->max_map_height)
 		{
 			ft_cleanup_on_error(line, store_buffer, map, line_count);
 			return (ERR_SCREEN_LIMIT);

@@ -6,7 +6,7 @@
 /*   By: amarroyo <amarroyo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/15 11:47:41 by amarroyo          #+#    #+#             */
-/*   Updated: 2025/03/13 12:58:22 by amarroyo         ###   ########.fr       */
+/*   Updated: 2025/03/13 13:11:28 by amarroyo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,10 +41,10 @@ static t_error	ft_validate_boundaries(t_map *map)
 	return (ERR_NONE);
 }
 
-t_error	ft_validate_screen_limit(t_map *map, t_winconfig *config)
+t_error	ft_validate_screen_limit(t_map *map, t_winconfig *winconfig)
 {
-	if (map->width > config->max_map_width
-		|| map->height > config->max_map_height)
+	if (map->width > winconfig->max_map_width
+		|| map->height > winconfig->max_map_height)
 		return (ERR_SCREEN_LIMIT);
 	return (ERR_NONE);
 }

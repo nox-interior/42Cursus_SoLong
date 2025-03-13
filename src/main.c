@@ -6,23 +6,23 @@
 /*   By: amarroyo <amarroyo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/28 10:13:08 by amarroyo          #+#    #+#             */
-/*   Updated: 2025/03/13 13:01:53 by amarroyo         ###   ########.fr       */
+/*   Updated: 2025/03/13 13:11:27 by amarroyo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
 
-static int	ft_initialize_game(t_game *game, t_map *map, t_winconfig *config,
+static int	ft_initialize_game(t_game *game, t_map *map, t_winconfig *winconfig,
 		char *map_path)
 {
 	t_error	error;
 
-	ft_init_winconfig(config);
+	ft_init_winconfig(winconfig);
 	ft_init_game(game, map);
 	game->map = malloc(sizeof(t_map));
 	if (!game->map)
 		return (EXIT_FAILURE);
-	error = ft_parse_map(map_path, game->map, config);
+	error = ft_parse_map(map_path, game->map, winconfig);
 	if (error != ERR_NONE)
 	{
 		ft_error_handling(error, map_path);
@@ -62,12 +62,12 @@ int	main(int argc, char **argv)
 {
 	t_game		game;
 	t_map		map;
-	t_winconfig	config;
+	t_winconfig	winconfig;
 
 	if (argc != 2)
 		return (ft_putstr_fd("Usage: ./so_long <map_file.ber>\n", 1),
 			EXIT_FAILURE);
-	if (ft_initialize_game(&game, &map, &config, argv[1]) == EXIT_FAILURE)
+	if (ft_initialize_game(&game, &map, &winconfig, argv[1]) == EXIT_FAILURE)
 		return (EXIT_FAILURE);
 	if (ft_initialize_mlx(&game) == EXIT_FAILURE)
 		return (EXIT_FAILURE);

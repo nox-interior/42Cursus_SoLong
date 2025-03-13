@@ -6,7 +6,7 @@
 /*   By: amarroyo <amarroyo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/15 12:32:52 by amarroyo          #+#    #+#             */
-/*   Updated: 2025/03/13 12:56:39 by amarroyo         ###   ########.fr       */
+/*   Updated: 2025/03/13 13:11:28 by amarroyo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,17 +24,17 @@ void	ft_init_map(t_map *map)
 	map->players = 0;
 }
 
-void	ft_init_winconfig(t_winconfig *config)
+void	ft_init_winconfig(t_winconfig *winconfig)
 {
 	int32_t	monitor_width;
 	int32_t	monitor_height;
 
 	monitor_width = 3840;
 	monitor_height = 2096;
-	config->screen_width = monitor_width;
-	config->screen_height = monitor_height;
-	config->max_map_width = (uint32_t)(monitor_width / TILE_SIZE);
-	config->max_map_height = (uint32_t)(monitor_height / TILE_SIZE);
+	winconfig->screen_width = monitor_width;
+	winconfig->screen_height = monitor_height;
+	winconfig->max_map_width = (uint32_t)(monitor_width / TILE_SIZE);
+	winconfig->max_map_height = (uint32_t)(monitor_height / TILE_SIZE);
 }
 
 void	ft_init_game(t_game *game, t_map *map)

@@ -6,19 +6,19 @@
 /*   By: amarroyo <amarroyo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/14 11:50:54 by amarroyo          #+#    #+#             */
-/*   Updated: 2025/03/13 12:57:31 by amarroyo         ###   ########.fr       */
+/*   Updated: 2025/03/13 13:11:28 by amarroyo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
 
 static t_error	ft_open_and_allocate(const char *file_path, t_map *map,
-	t_winconfig *config, int *fd)
+		t_winconfig *winconfig, int *fd)
 {
 	*fd = ft_open_map_file(file_path);
 	if (*fd == -1)
 		return (ERR_OPEN_FILE);
-	map->grid = ft_allocate_grid(config->max_map_height);
+	map->grid = ft_allocate_grid(winconfig->max_map_height);
 	if (!map->grid)
 	{
 		close(*fd);
@@ -38,7 +38,7 @@ static t_error	ft_handle_map_error(t_error error, t_map *map, int fd)
 	return (error);
 }
 
-t_error	ft_parse_map(const char *file_path, t_map *map, t_winconfig *config)
+t_error	ft_parse_map(const char *file_path, t_map *map, t_winconfig *winconfig)
 {
 	int		fd;
 	t_error	error;
@@ -47,14 +47,14 @@ t_error	ft_parse_map(const char *file_path, t_map *map, t_winconfig *config)
 	if (error != ERR_NONE)
 		return (error);
 	ft_init_map(map);
-	error = ft_open_and_allocate(file_path, map, config, &fd);
+	error = ft_open_and_allocate(file_path, map, winconfig, &fd);
 	if (error != ERR_NONE)
 		return (error);
-	error = ft_read_map_lines(fd, map, config);
+	error = ft_read_map_lines(fd, map, winconfig);
 	close(fd);
 	if (error != ERR_NONE)
 		return (ft_handle_map_error(error, map, fd));
-	error = ft_validate_screen_limit(map, config);
+	error = ft_validate_screen_limit(map, winconfig);
 	if (error != ERR_NONE)
 		return (ft_handle_map_error(error, map, fd));
 	error = ft_validate_map(map);

@@ -6,7 +6,7 @@
 /*   By: amarroyo <amarroyo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/20 09:08:54 by amarroyo          #+#    #+#             */
-/*   Updated: 2025/03/12 12:59:45 by amarroyo         ###   ########.fr       */
+/*   Updated: 2025/03/13 12:32:15 by amarroyo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,20 +48,18 @@ typedef struct s_map
 	uint32_t		players;
 }					t_map;
 
-/* Flood fill helper structures*/
-typedef struct s_reachable
+/* Game structure*/
+typedef struct s_game
 {
-	uint32_t	collectibles;
-	uint32_t	exits;
-}		t_reachable;
+	t_map			*map;
+	mlx_t			*mlx;
+	uint32_t		moves;
+	t_textures		textures;
+	t_images		images;
+	char			player_dir;
+}					t_game;
 
-typedef struct s_flood
-{
-	t_map		*map;
-	t_reachable	reachable;
-}				t_flood;
-
-/* Texture structure*/
+/* Textures structure*/
 typedef struct s_textures
 {
 	mlx_texture_t	*wall;
@@ -75,6 +73,7 @@ typedef struct s_textures
 	mlx_texture_t	*player_right;
 }					t_textures;
 
+/*Images structure*/
 typedef struct s_images
 {
 	mlx_image_t		*wall;
@@ -88,16 +87,18 @@ typedef struct s_images
 	mlx_image_t		*player_right;
 }					t_images;
 
-/* Game structure*/
-typedef struct s_game
+/* Flood fill helper structures*/
+typedef struct s_flood
 {
-	t_map			*map;
-	mlx_t			*mlx;
-	uint32_t		moves;
-	t_textures		textures;
-	t_images		images;
-	char			player_dir;
-}					t_game;
+	t_map		*map;
+	t_reachable	reachable;
+}				t_flood;
+
+typedef struct s_reachable
+{
+	uint32_t	collectibles;
+	uint32_t	exits;
+}		t_reachable;
 
 /*Configuration structure for dynamic limits*/
 typedef struct s_config

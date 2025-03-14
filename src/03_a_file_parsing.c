@@ -3,23 +3,21 @@
 /*                                                        :::      ::::::::   */
 /*   03_a_file_parsing.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: amarroyo <amarroyo@student.42madrid.com    +#+  +:+       +#+        */
+/*   By: amarroyo <amarroyo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/10 10:14:27 by amarroyo          #+#    #+#             */
-/*   Updated: 2025/01/28 11:59:58 by amarroyo         ###   ########.fr       */
+/*   Updated: 2025/03/14 10:18:18 by amarroyo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
 
-int	ft_open_map_file(const char *file_path)
+t_error	ft_open_map_file(const char *file_path, int *fd)
 {
-	int	fd;
-
-	fd = open(file_path, O_RDONLY);
-	if (fd == -1)
-		return (-1);
-	return (fd);
+	*fd = open(file_path, O_RDONLY);
+	if (*fd == -1)
+		return (ERR_OPEN_FILE);
+	return (ERR_NONE);
 }
 
 void	ft_initialize_grid(char **grid, int size)

@@ -6,7 +6,7 @@
 /*   By: amarroyo <amarroyo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/14 11:50:54 by amarroyo          #+#    #+#             */
-/*   Updated: 2025/03/14 10:17:13 by amarroyo         ###   ########.fr       */
+/*   Updated: 2025/03/17 11:13:53 by amarroyo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@ static t_error	ft_open_and_allocate(const char *file_path, t_map *map,
 		t_winconfig *winconfig, int *fd)
 {
 	t_error	error;
-	
+
 	error = ft_open_map_file(file_path, fd);
 	if (error != ERR_NONE)
 		return (error);
@@ -29,7 +29,7 @@ static t_error	ft_open_and_allocate(const char *file_path, t_map *map,
 	return (ERR_NONE);
 }
 
-static t_error	ft_handle_map_error(t_error error, t_map *map, int fd)
+static t_error	ft_free_map_error(t_error error, t_map *map, int fd)
 {
 	if (map->grid != NULL)
 	{
@@ -55,15 +55,15 @@ t_error	ft_parse_map(const char *file_path, t_map *map, t_winconfig *winconfig)
 	error = ft_read_map_lines(fd, map, winconfig);
 	close(fd);
 	if (error != ERR_NONE)
-		return (ft_handle_map_error(error, map, fd));
+		return (ft_free_map_error(error, map, fd));
 	error = ft_validate_screen_limit(map, winconfig);
 	if (error != ERR_NONE)
-		return (ft_handle_map_error(error, map, fd));
+		return (ft_free_map_error(error, map, fd));
 	error = ft_validate_map(map);
 	if (error != ERR_NONE)
-		return (ft_handle_map_error(error, map, fd));
+		return (ft_free_map_error(error, map, fd));
 	error = ft_validate_path(map);
 	if (error != ERR_NONE)
-		return (ft_handle_map_error(error, map, fd));
+		return (ft_free_map_error(error, map, fd));
 	return (ERR_NONE);
 }

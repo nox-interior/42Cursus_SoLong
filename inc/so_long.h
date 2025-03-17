@@ -6,7 +6,7 @@
 /*   By: amarroyo <amarroyo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/20 09:08:54 by amarroyo          #+#    #+#             */
-/*   Updated: 2025/03/14 10:11:20 by amarroyo         ###   ########.fr       */
+/*   Updated: 2025/03/17 16:08:36 by amarroyo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -134,7 +134,6 @@ void				ft_system_error_handling(t_error error_code,
 						const char *ctxt);
 void				ft_map_error_handling(t_error error_code);
 void				ft_error_handling(t_error error_code, const char *ctxt);
-t_error				ft_open_map_file(const char *file_path, int *fd);
 void				ft_initialize_grid(char **grid, int size);
 char				**ft_allocate_grid(int size);
 t_error				ft_parse_map(const char *file_path, t_map *map,

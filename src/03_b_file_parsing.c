@@ -6,28 +6,18 @@
 /*   By: amarroyo <amarroyo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/14 11:50:54 by amarroyo          #+#    #+#             */
-/*   Updated: 2025/03/17 16:01:25 by amarroyo         ###   ########.fr       */
+/*   Updated: 2025/03/17 16:08:42 by amarroyo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
 
-t_error	ft_open_map_file(const char *file_path, int *fd)
+static t_error	ft_open_and_allocate(const char *file_path, t_map *map,
+		t_winconfig *winconfig, int *fd)
 {
 	*fd = open(file_path, O_RDONLY);
 	if (*fd == -1)
 		return (ERR_OPEN_FILE);
-	return (ERR_NONE);
-}
-
-static t_error	ft_open_and_allocate(const char *file_path, t_map *map,
-		t_winconfig *winconfig, int *fd)
-{
-	t_error	error;
-
-	error = ft_open_map_file(file_path, fd);
-	if (error != ERR_NONE)
-		return (error);
 	map->grid = ft_allocate_grid(winconfig->max_map_height);
 	if (!map->grid)
 	{

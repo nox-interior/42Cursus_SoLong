@@ -6,7 +6,7 @@
 /*   By: amarroyo <amarroyo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/09 08:46:56 by amarroyo          #+#    #+#             */
-/*   Updated: 2025/03/17 12:21:33 by amarroyo         ###   ########.fr       */
+/*   Updated: 2025/03/17 12:29:50 by amarroyo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@ t_error	ft_check_extension(const char *str)
 {
 	int	len;
 
-	if (!str || ft_strlen(str) < 4)
+	if (!str || ft_strlen(str) < 5)
 		return (ERR_FILE_PATH_INVALID);
 	len = ft_strlen(str);
 	if (str[len - 4] == '.' && str[len - 5] == '/')

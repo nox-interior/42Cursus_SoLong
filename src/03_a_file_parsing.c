@@ -6,7 +6,7 @@
 /*   By: amarroyo <amarroyo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/10 10:14:27 by amarroyo          #+#    #+#             */
-/*   Updated: 2025/03/17 16:01:12 by amarroyo         ###   ########.fr       */
+/*   Updated: 2025/03/17 16:54:32 by amarroyo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,6 +33,7 @@ char	**ft_allocate_grid(int size)
 		ft_map_error_handling(ERR_MAP_INVALID);
 		return (NULL);
 	}
+	grid = NULL;
 	grid = malloc(size * sizeof(char *));
 	if (!grid)
 	{

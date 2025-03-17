@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   01_extension_validation.c                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: amarroyo <amarroyo@student.42madrid.com    +#+  +:+       +#+        */
+/*   By: amarroyo <amarroyo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/09 08:46:56 by amarroyo          #+#    #+#             */
-/*   Updated: 2025/01/20 12:58:46 by amarroyo         ###   ########.fr       */
+/*   Updated: 2025/03/17 11:05:18 by amarroyo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 t_error	ft_check_extension(const char *str)
 {
-	int		i;
+	int	i;
 
 	i = 0;
 	if (! str || ft_strlen(str) < 5)

@@ -6,19 +6,11 @@
 /*   By: amarroyo <amarroyo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/10 10:14:27 by amarroyo          #+#    #+#             */
-/*   Updated: 2025/03/14 10:18:18 by amarroyo         ###   ########.fr       */
+/*   Updated: 2025/03/17 16:01:12 by amarroyo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
-
-t_error	ft_open_map_file(const char *file_path, int *fd)
-{
-	*fd = open(file_path, O_RDONLY);
-	if (*fd == -1)
-		return (ERR_OPEN_FILE);
-	return (ERR_NONE);
-}
 
 void	ft_initialize_grid(char **grid, int size)
 {

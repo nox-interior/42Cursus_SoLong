@@ -5,9 +5,9 @@ MLX42 obtained from https://github.com/42-Fundacion-Telefonica/MLX42
 
 42CODAM original library and documentation: https://github.com/codam-coding-college/MLX42
 
-This program runs on Linux, just download the repository and write "make· on the terminal. If some library is missing, check the instructions provided in the 42CODAM link below.
+This program runs on Linux, just download the repository and write ```make``` on the terminal. If some library is missing, check the instructions provided in the 42CODAM link below.
 
-Use "./so_long maps/<map_you_want_to_use> 
+Use ```./so_long maps/<map_you_want_to_use>```
 
 It's a small silly game, but I've learned A LOT about error handling, data parsing, and, of course, MLX42 graphic library.
 

@@ -6,7 +6,7 @@
 #    By: amarroyo <amarroyo@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/01/09 10:42:37 by amarroyo          #+#    #+#              #
-#    Updated: 2025/03/12 12:26:25 by amarroyo         ###   ########.fr        #
+#    Updated: 2025/03/18 11:07:36 by amarroyo         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -25,7 +25,7 @@ OBJ_DIR = obj/
 
 # Compiler and Flags
 CC = gcc
-CFLAGS = -Wall -Wextra -Werror -I$(INC_DIR) -I$(MLX_DIR)/include \
+CFLAGS = -Wall -Wextra -Werror -g -o0 -I$(INC_DIR) -I$(MLX_DIR)/include \
 -I$(LIBFT_DIR)/inc
 MLX_FLAGS = -L$(MLX_BUILD_DIR) -lmlx42 -I$(MLX_DIR)/include -ldl -lglfw \
 -pthread -lm

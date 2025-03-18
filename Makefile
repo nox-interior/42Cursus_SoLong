@@ -6,7 +6,7 @@
 #    By: amarroyo <amarroyo@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/01/09 10:42:37 by amarroyo          #+#    #+#              #
-#    Updated: 2025/03/18 11:07:36 by amarroyo         ###   ########.fr        #
+#    Updated: 2025/03/18 16:45:50 by amarroyo         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -39,7 +39,6 @@ SRC = 	$(SRC_DIR)/00_a_struct_init.c \
 		$(SRC_DIR)/03_a_file_parsing.c \
 		$(SRC_DIR)/03_b_file_parsing.c \
 		$(SRC_DIR)/03_c_file_parsing.c \
-		$(SRC_DIR)/03_d_file_parsing.c \
 		$(SRC_DIR)/04_a_map_validation.c \
 		$(SRC_DIR)/04_b_map_validation.c \
 		$(SRC_DIR)/05_path_validation.c \

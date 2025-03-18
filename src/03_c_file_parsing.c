@@ -6,7 +6,7 @@
 /*   By: amarroyo <amarroyo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/10 12:12:49 by amarroyo          #+#    #+#             */
-/*   Updated: 2025/03/18 12:48:46 by amarroyo         ###   ########.fr       */
+/*   Updated: 2025/03/18 16:36:23 by amarroyo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,12 +20,7 @@ static t_error	ft_validate_line(char *line, t_map *map, uint32_t line_count)
 		return (ERR_MAP_INVALID);
 	line_length = ft_strlen(line);
 	if (line_length > 0 && line[line_length - 1] == '\n')
-	{
-		line[line_length - 1] = '\0';
 		line_length--;
-	}
-	if (line_length == 0)
-		return (ERR_MAP_INVALID);
 	if (line_count == 0)
 		map->width = line_length;
 	else if (line_length != map->width)

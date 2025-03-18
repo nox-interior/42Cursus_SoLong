@@ -17,4 +17,4 @@ Go check it!
 
 ![when you finally get so_long to work](https://media.giphy.com/media/v1.Y2lkPTc5MGI3NjExODk3aHdoZDRvcGlscWgzcnhxMnA2cHdkdmRoZHBoY2N2MGJsZ3VpaSZlcD12MV9naWZzX3NlYXJjaCZjdD1n/9u4TXfoIM7wQHnfR1p/giphy.gif)
 
-Thanks Bombom 🖤
+<small>Thanks Bombom 🖤</small>

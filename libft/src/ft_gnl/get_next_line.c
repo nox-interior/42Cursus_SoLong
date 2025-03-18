@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   get_next_line.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: amarroyo <amarroyo@student.42madrid.com    +#+  +:+       +#+        */
+/*   By: amarroyo <amarroyo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/13 13:57:53 by amarroyo          #+#    #+#             */
-/*   Updated: 2025/01/13 16:41:26 by amarroyo         ###   ########.fr       */
+/*   Updated: 2025/03/18 12:39:03 by amarroyo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,81 +15,75 @@
 
 char	*ft_read_file(int fd, char *store_buffer)
 {
-	char		*line_buffer;
-	ssize_t		num_bytes_read;
+	char	*buf;
+	ssize_t	bytes_read;
 
-	num_bytes_read = 1;
-	line_buffer = ft_calloc((BUFFER_SIZE + 1), sizeof(char));
-	if (!line_buffer)
+	bytes_read = 1;
+	buf = ft_calloc(BUFFER_SIZE + 1, sizeof(char));
+	if (!buf)
 		return (NULL);
-	while (ft_strchr(store_buffer, '\n') == NULL && num_bytes_read != 0)
+	while (ft_strchr(store_buffer, '\n') == NULL && bytes_read != 0)
 	{
-		num_bytes_read = read(fd, line_buffer, BUFFER_SIZE);
-		if (num_bytes_read < 0)
-			return (free(store_buffer), free(line_buffer), store_buffer = NULL,
-				line_buffer = NULL, NULL);
-		line_buffer[num_bytes_read] = '\0';
-		store_buffer = ft_join_and_free(store_buffer, line_buffer);
+		bytes_read = read(fd, buf, BUFFER_SIZE);
+		if (bytes_read < 0)
+			return (free(buf), free(store_buffer), NULL);
+		buf[bytes_read] = '\0';
+		store_buffer = ft_join_and_free(store_buffer, buf);
 		if (!store_buffer)
-			return (free(store_buffer), free(line_buffer), store_buffer = NULL,
-				line_buffer = NULL, NULL);
+			return (free(buf), NULL);
 	}
-	free(line_buffer);
+	free(buf);
 	return (store_buffer);
 }
 
 char	*ft_extract_line(char *store_buffer)
 {
-	char	*line_buffer;
+	char	*line;
 	size_t	i;
 
+	if (!store_buffer || store_buffer[0] == '\0')
+		return (NULL);
 	i = 0;
-	if (!store_buffer)
-		return (NULL);
-	if (store_buffer[i] == '\0')
-		return (NULL);
-	while (store_buffer[i] != '\0' && store_buffer[i] != '\n')
+	while (store_buffer[i] && store_buffer[i] != '\n')
 		i++;
 	if (store_buffer[i] == '\n')
 		i++;
-	line_buffer = ft_substr_gnl(store_buffer, 0, i);
-	if (!line_buffer)
-		return (NULL);
-	return (line_buffer);
+	line = ft_substr_gnl(store_buffer, 0, i);
+	return (line);
 }
 
 char	*ft_trim_buffer(char *store_buffer)
 {
-	char	*remaining_buffer;
+	char	*new_buffer;
 	size_t	i;
 	size_t	j;
 
-	i = 0;
-	j = 0;
 	if (!store_buffer)
 		return (NULL);
-	while (store_buffer[i] != '\0' && store_buffer[i] != '\n')
-		i ++;
+	i = 0;
+	while (store_buffer[i] && store_buffer[i] != '\n')
+		i++;
 	if (store_buffer[i] == '\0')
-		return (free(store_buffer), store_buffer = NULL, NULL);
-	i ++;
-	remaining_buffer = ft_calloc(ft_strlen(store_buffer) - i + 1, sizeof(char));
-	if (!remaining_buffer)
-		return (NULL);
-	while (store_buffer[i] != '\0')
 	{
-		remaining_buffer[j] = store_buffer[i];
-		j ++;
-		i ++;
+		free(store_buffer);
+		return (ft_strdup(""));
 	}
-	remaining_buffer[j] = '\0';
+	i++;
+	new_buffer = ft_calloc(ft_strlen(store_buffer) - i + 1, sizeof(char));
+	if (!new_buffer)
+		return (NULL);
+	j = 0;
+	while (store_buffer[i])
+		new_buffer[j++] = store_buffer[i++];
+	new_buffer[j] = '\0';
 	free(store_buffer);
-	return (remaining_buffer);
+	return (new_buffer);
 }
 
 char	*get_next_line(int fd, char **store_buffer)
 {
-	char		*current_line;
+	char	*current_line;
+	char	*tmp;
 
 	if (fd < 0 || BUFFER_SIZE <= 0 || !store_buffer)
 		return (NULL);
@@ -98,9 +92,17 @@ char	*get_next_line(int fd, char **store_buffer)
 		return (NULL);
 	current_line = ft_extract_line(*store_buffer);
 	if (!current_line)
+	{
+		if ((*store_buffer)[0] != '\0')
+		{
+			current_line = ft_strdup(*store_buffer);
+			free(*store_buffer);
+			*store_buffer = NULL;
+			return (current_line);
+		}
 		return (NULL);
-	*store_buffer = ft_trim_buffer(*store_buffer);
-	if (!*store_buffer)
-		return (NULL);
+	}
+	tmp = ft_trim_buffer(*store_buffer);
+	*store_buffer = tmp;
 	return (current_line);
 }

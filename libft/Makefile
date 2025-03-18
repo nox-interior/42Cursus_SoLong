@@ -6,7 +6,7 @@
 #    By: amarroyo <amarroyo@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/05/08 14:13:37 by amarroyo          #+#    #+#              #
-#    Updated: 2025/03/17 20:02:06 by amarroyo         ###   ########.fr        #
+#    Updated: 2025/03/18 11:07:18 by amarroyo         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -20,7 +20,7 @@ OBJ_DIR			= obj/
 
 # Compiler and Flags
 CC				= gcc
-CFLAGS			= -Wall -Wextra -Werror -I
+CFLAGS			= -Wall -Wextra -Werror -g -o0 -I
 RM				= rm -f
 AR				= ar rcs
 

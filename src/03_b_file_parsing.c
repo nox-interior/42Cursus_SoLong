@@ -6,7 +6,7 @@
 /*   By: amarroyo <amarroyo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/14 11:50:54 by amarroyo          #+#    #+#             */
-/*   Updated: 2025/03/18 16:08:44 by amarroyo         ###   ########.fr       */
+/*   Updated: 2025/03/18 16:12:16 by amarroyo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,7 @@ static t_error	ft_free_map_error(t_error error, t_map *map, int fd)
 static t_error	ft_check_no_trailing_newline(const char *file_path)
 {
 	int		fd;
-	char	buf[1024];
+	char	buffer[1024];
 	ssize_t	n;
 	char	last;
 
@@ -51,10 +51,10 @@ static t_error	ft_check_no_trailing_newline(const char *file_path)
 	last = '\0';
 	while (1)
 	{
-		n = read(fd, buf, 1024);
+		n = read(fd, buffer, 1024);
 		if (n <= 0)
 			break ;
-		last = buf[n - 1];
+		last = buffer[n - 1];
 	}
 	close(fd);
 	if (n < 0)

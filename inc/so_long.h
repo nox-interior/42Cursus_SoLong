@@ -6,7 +6,7 @@
 /*   By: amarroyo <amarroyo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/20 09:08:54 by amarroyo          #+#    #+#             */
-/*   Updated: 2025/03/17 17:36:34 by amarroyo         ###   ########.fr       */
+/*   Updated: 2025/03/24 12:30:45 by amarroyo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -138,7 +138,6 @@ void				ft_initialize_grid(char **grid, int max_height);
 char				**ft_allocate_grid(int max_height);
 t_error				ft_parse_map(const char *file_path, t_map *map,
 						t_winconfig *winconfig);
-t_error				ft_process_line(char *line, t_map *map, int line_count);
 t_error				ft_read_map_lines(int fd, t_map *map,
 						t_winconfig *winconfig);
 void				ft_free_map_grid(char **grid, int line_count);

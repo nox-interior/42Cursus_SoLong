@@ -6,7 +6,7 @@
 /*   By: amarroyo <amarroyo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/14 11:50:54 by amarroyo          #+#    #+#             */
-/*   Updated: 2025/03/18 16:12:16 by amarroyo         ###   ########.fr       */
+/*   Updated: 2025/03/24 16:53:32 by amarroyo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -98,5 +98,7 @@ t_error	ft_parse_map(const char *file_path, t_map *map, t_winconfig *winconfig)
 	if (error != ERR_NONE)
 		return (error);
 	error = ft_read_map_lines(fd, map, winconfig);
+	if (error != ERR_NONE)
+		return (ft_free_map_error(error, map, fd));
 	return (ft_finish_parse(map, winconfig, fd, error));
 }

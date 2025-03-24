@@ -6,7 +6,7 @@
 /*   By: amarroyo <amarroyo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/14 11:50:54 by amarroyo          #+#    #+#             */
-/*   Updated: 2025/03/24 16:53:32 by amarroyo         ###   ########.fr       */
+/*   Updated: 2025/03/24 17:58:06 by amarroyo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,21 +65,18 @@ static t_error	ft_check_no_trailing_newline(const char *file_path)
 }
 
 static t_error	ft_finish_parse(t_map *map, t_winconfig *winconfig,
-	int fd, t_error error)
+		t_error error)
 {
-	close(fd);
 	if (error != ERR_NONE)
-		return (ft_free_map_error(error, map, fd));
+		return (error);
 	error = ft_validate_screen_limit(map, winconfig);
 	if (error != ERR_NONE)
-		return (ft_free_map_error(error, map, fd));
+		return (error);
 	error = ft_validate_map(map);
 	if (error != ERR_NONE)
-		return (ft_free_map_error(error, map, fd));
+		return (error);
 	error = ft_validate_path(map);
-	if (error != ERR_NONE)
-		return (ft_free_map_error(error, map, fd));
-	return (ERR_NONE);
+	return (error);
 }
 
 t_error	ft_parse_map(const char *file_path, t_map *map, t_winconfig *winconfig)
@@ -98,7 +95,11 @@ t_error	ft_parse_map(const char *file_path, t_map *map, t_winconfig *winconfig)
 	if (error != ERR_NONE)
 		return (error);
 	error = ft_read_map_lines(fd, map, winconfig);
+	close(fd);
 	if (error != ERR_NONE)
 		return (ft_free_map_error(error, map, fd));
-	return (ft_finish_parse(map, winconfig, fd, error));
+	error = ft_finish_parse(map, winconfig, error);
+	if (error != ERR_NONE)
+		return (ft_free_map_error(error, map, fd));
+	return (ERR_NONE);
 }

@@ -6,7 +6,7 @@
 /*   By: amarroyo <amarroyo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/15 16:14:20 by amarroyo          #+#    #+#             */
-/*   Updated: 2025/03/12 12:59:10 by amarroyo         ###   ########.fr       */
+/*   Updated: 2025/03/25 10:37:48 by amarroyo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,18 +38,22 @@ void	ft_flood_fill(t_flood *flood, char **grid, int y, int x)
 {
 	if (y < 0 || y >= (int)flood->map->height || x < 0
 		|| x >= (int)flood->map->width)
-		return ;
+		return;
 	if (grid[y][x] == WALL || grid[y][x] == 'V')
-		return ;
+		return;
 	if (grid[y][x] == COLLECTIBLE)
 		flood->reachable.collectibles++;
 	if (grid[y][x] == EXIT)
 		flood->reachable.exits++;
 	grid[y][x] = 'V';
-	ft_flood_fill(flood, grid, y + 1, x);
-	ft_flood_fill(flood, grid, y - 1, x);
-	ft_flood_fill(flood, grid, y, x + 1);
-	ft_flood_fill(flood, grid, y, x - 1);
+	if (y + 1 < (int)flood->map->height && grid[y + 1][x] != 'V')
+		ft_flood_fill(flood, grid, y + 1, x);
+	if (y - 1 >= 0 && grid[y - 1][x] != 'V')
+		ft_flood_fill(flood, grid, y - 1, x);
+	if (x + 1 < (int)flood->map->width && grid[y][x + 1] != 'V')
+		ft_flood_fill(flood, grid, y, x + 1);
+	if (x - 1 >= 0 && grid[y][x - 1] != 'V')
+		ft_flood_fill(flood, grid, y, x - 1);
 }
 
 t_error	ft_validate_path(t_map *map)

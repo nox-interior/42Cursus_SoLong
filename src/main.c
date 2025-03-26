@@ -74,5 +74,6 @@ int	main(int argc, char **argv)
 	mlx_close_hook(game.mlx, (void (*)(void *))ft_exit_game, &game);
 	ft_start_game_loop(&game);
 	mlx_terminate(game.mlx);
+	ft_exit_game(&game);
 	return (EXIT_SUCCESS);
 }
